@@ -11,9 +11,10 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 find_package(OpenCV REQUIRED)
 find_package(SQLITE3 REQUIRED)
 
-add_executable(Computer_Vision main.cpp)
+add_executable(Computer_Vision main.cpp sqlite_functions.cpp sqlite_functions.h)
 
 include_directories(files)
+include_directories($ENV{SQlite3_inc})
 include_directories(${OpenCV_INCLUDE_DIRS})
 add_subdirectory(files)
 add_subdirectory(gtest)
