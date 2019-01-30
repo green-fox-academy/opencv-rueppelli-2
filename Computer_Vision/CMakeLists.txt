@@ -11,7 +11,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 find_package(OpenCV REQUIRED)
 find_package(SQLITE3 REQUIRED)
 
-add_executable(Computer_Vision main.cpp sqlite_functions.cpp sqlite_functions.h)
+add_executable(Computer_Vision main.cpp)
 
 include_directories(files)
 include_directories($ENV{SQlite3_inc})
@@ -21,7 +21,7 @@ add_subdirectory(gtest)
 
 
 if(WIN32)
-    target_link_libraries(Computer_Vision ${OpenCV_LIBS} sqlite3::sqlite3 project_files)
+    target_link_libraries(Computer_Vision ${OpenCV_LIBS} project_files sqlite3::sqlite3)
 else()
-    target_link_libraries(Computer_Vision ${OpenCV_LIBS} sqlite3 dl project_files)
+    target_link_libraries(Computer_Vision ${OpenCV_LIBS} project_files sqlite3 dl)
 endif()
