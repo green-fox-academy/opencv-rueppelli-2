@@ -1,5 +1,6 @@
 #include <iostream>
 #include <initial.h>
+#include "sqlite_functions.h"
 
 int main() {
 
