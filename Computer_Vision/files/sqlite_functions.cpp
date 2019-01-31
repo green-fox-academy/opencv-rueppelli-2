@@ -11,7 +11,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName)
 }
 
 
-int generalSQLconvert(std::string sqlCommand, sqlite3* db)
+int SQLgeneralConvert(const std::string &sqlCommand, sqlite3* db)
 {
     char buffer[100];
     char* errorMsg = 0;
@@ -28,18 +28,18 @@ int generalSQLconvert(std::string sqlCommand, sqlite3* db)
 }
 
 
-int createRecord(std::string tableName, std::string values, sqlite3* db)
+int SQLcreateRecord(std::string tableName, std::string path, long long int processTime, int circles, sqlite3* db)
 {
     char buffer[100];
     char* errorMsg = 0;
 
-    char *cValues = new char[values.length() + 1];
-    strcpy(cValues, values.c_str());
-
     char *cTableName = new char[tableName.length() + 1];
     strcpy(cTableName, tableName.c_str());
 
-    sprintf(buffer, "INSERT INTO %s VALUES(%s);",cTableName, cValues);
+    char *cPath = new char[path.length() + 1];
+    strcpy(cPath, path.c_str());
+
+    sprintf(buffer, "INSERT INTO %s(path, process_time, circles) VALUES(\'%s\', %lld, %d);",cTableName, cPath, processTime, circles);
 
     sqlite3_exec(db, buffer, callback, 0, &errorMsg);
 
@@ -47,7 +47,7 @@ int createRecord(std::string tableName, std::string values, sqlite3* db)
 }
 
 
-int select(std::string values, std::string table, sqlite3* db)
+int SQLselectQuery(std::string values, std::string table, sqlite3* db)
 {
     char buffer[100];
     char* errorMsg = 0;
@@ -65,7 +65,7 @@ int select(std::string values, std::string table, sqlite3* db)
     return 1;
 }
 
-int deleteRecord(std::string table, std::string condition, sqlite3* db)
+int SQLdeleteById(const std::string &table, int id, sqlite3* db)
 {
     char buffer[100];
     char* errorMsg = 0;
@@ -73,18 +73,14 @@ int deleteRecord(std::string table, std::string condition, sqlite3* db)
     char *cTable = new char[table.length() + 1];
     strcpy(cTable, table.c_str());
 
-    char *cCondition = new char[condition.length() + 1];
-    strcpy(cCondition, condition.c_str());
-
-    sprintf(buffer, "DELETE FROM %s WHERE %s;",cTable, cCondition);
+    sprintf(buffer, "DELETE FROM %s WHERE id = %d;",cTable, id);
 
     sqlite3_exec(db, buffer, callback, 0, &errorMsg);
 
     return 1;
 }
 
-
-int updateRecord(std::string table, std::string set, std::string condition, sqlite3* db)
+int SQLdeleteLast(const std::string &table, sqlite3* db)
 {
     char buffer[100];
     char* errorMsg = 0;
@@ -92,13 +88,25 @@ int updateRecord(std::string table, std::string set, std::string condition, sqli
     char *cTable = new char[table.length() + 1];
     strcpy(cTable, table.c_str());
 
-    char *cSet = new char[set.length() + 1];
-    strcpy(cSet, set.c_str());
+    sprintf(buffer, "DELETE FROM %s WHERE id = ( SELECT MAX(id) FROM %s );;",cTable, cTable);
 
-    char *cCondition = new char[condition.length() + 1];
-    strcpy(cCondition, condition.c_str());
+    sqlite3_exec(db, buffer, callback, 0, &errorMsg);
 
-    sprintf(buffer, "UPDATE %s  SET %s WHERE %s;",cTable, cSet, cCondition); // table, set, condition
+    return 1;
+}
+
+int SQLupdateRecord(const std::string &table, std::string setNewValue, int id, sqlite3* db)
+{
+    char buffer[100];
+    char* errorMsg = 0;
+
+    char *cTable = new char[table.length() + 1];
+    strcpy(cTable, table.c_str());
+
+    char *cSet = new char[setNewValue.length() + 1];
+    strcpy(cSet, setNewValue.c_str());
+
+    sprintf(buffer, "UPDATE %s  SET %s WHERE id = %d;",cTable, cSet, id); // table, set, condition
 
     sqlite3_exec(db, buffer, callback, 0, &errorMsg);
 
