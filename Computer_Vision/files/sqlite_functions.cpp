@@ -19,7 +19,6 @@ int SQLgeneralConvert(const std::string &sqlCommand, sqlite3* db)
     char *cSqlCommand = new char[sqlCommand.length() + 1];
     strcpy(cSqlCommand, sqlCommand.c_str());
 
-
     sprintf(buffer, "%s;",cSqlCommand); // table, set, condition
 
     sqlite3_exec(db, buffer, callback, 0, &errorMsg);
