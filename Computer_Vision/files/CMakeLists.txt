@@ -1,1 +1,1 @@
-add_library(project_files initial.h initial.cpp sqlite_functions.cpp sqlite_functions.h detect_circle.cpp detect_circle.h)
+add_library(project_files initial.h initial.cpp sqlite_functions.cpp sqlite_functions.h detect_circle.cpp detect_circle.h blur.cpp blur.h)
