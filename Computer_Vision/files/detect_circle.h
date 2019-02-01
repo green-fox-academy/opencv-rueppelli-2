@@ -7,6 +7,9 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 
-cv::Mat detectCircle(cv::Mat image);
+extern cv::Mat image;
+extern cv::Mat blurredImage;
+
+cv::Mat detectCircle();
 
 #endif
