@@ -2,9 +2,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
-#include <chrono>
 
-#include "initial.h"
 #include "sqlite_functions.h"
 #include "detect_circle.h"
 #include "blur.h"
@@ -18,9 +16,18 @@ cv::Mat blurredImage;
 int sliderGaussian = 0;
 int sliderMedian = 0;
 
-sqlite3* db;
-
 int main(int argc, char** argv) {
+
+    sqlite3* db;
+
+    int rc = sqlite3_open("../files/opencv-2.db", &db);
+
+    if(rc) {
+        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        return(0);
+    } else {
+        fprintf(stderr, "Opened database successfully\n");
+    }
 
     sqlite3_open("../files/opencv-2.db", &db);
 
@@ -44,16 +51,15 @@ int main(int argc, char** argv) {
     cv::waitKey(0);
 
     std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-    cv::Mat circles = detectCircle();
+    int numberOfCircles = detectCircle(image);
     std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 
     long long int duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 
-    int circlessss = 6;
+    SQLcreateRecord("circles", imagePath, duration, numberOfCircles, db);
+    std::cout << std::endl << "Detected circles: " << numberOfCircles << std::endl;
 
-    SQLcreateRecord("circles", imagePath, duration, circlessss, db);
-
-    cv::imshow(NAME, circles);
+    cv::imshow(NAME, image);
     cv::waitKey(0);
 
     sqlite3_close(db);
