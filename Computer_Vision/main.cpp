@@ -4,41 +4,37 @@
 #include <opencv2/highgui.hpp>
 
 #include "sqlite_functions.h"
-#include "detect_circle.h"
 #include "blur.h"
+#include "detect_circle.h"
 
 #define NAME "Computer Vision"
 
 cv::Mat image;
 cv::Mat gray;
 cv::Mat blurredImage;
-
 int sliderGaussian = 0;
 int sliderMedian = 0;
 
 int main(int argc, char** argv) {
 
     sqlite3* db;
-
     int rc = sqlite3_open("../files/opencv-2.db", &db);
 
     if(rc) {
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        return(0);
+        return(-1);
     } else {
         fprintf(stderr, "Opened database successfully\n");
     }
 
     sqlite3_open("../files/opencv-2.db", &db);
 
-    std::string imagePath("../img/balls11.jpg");
+    std::string imagePath("../img/baldasdls11.jpg");
     image = cv::imread(imagePath, cv::IMREAD_COLOR);
 
     if(argc > 1) {
         imagePath = argv[1];
-    }
-
-    if(image.empty()) {
+    } else if(image.empty()) {
         std::cout << "Sorry baby, I can't find the image." << std::endl ;
         return -1;
     }
@@ -61,7 +57,6 @@ int main(int argc, char** argv) {
 
     cv::imshow(NAME, image);
     cv::waitKey(0);
-
     sqlite3_close(db);
 
     return 0;

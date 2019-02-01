@@ -12,12 +12,12 @@ int detectCircle(cv::Mat &image)
         HoughCircles(gray, circles, cv::HOUGH_GRADIENT, 1, gray.rows/6, 100, 30, 0, 0);
         int numberOfCircles = 0;
 
-        for(size_t i = 0; i < circles.size(); i++)
-        {
+        for (size_t i = 0; i < circles.size(); i++) {
+
             cv::Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
             int r = cvRound(circles[i][2]);
-            circle( image, center, 7, cv::Scalar(255,0,255), -1, 4, 0);
-            circle( image, center, r, cv::Scalar(0,255,0), 10, 4, 0);
+            circle(image, center, 7, cv::Scalar(255,0,255), -1, 4, 0);
+            circle(image, center, r, cv::Scalar(0,255,0), 10, 4, 0);
 
             std::string areaString = std::to_string(r * r);
             int centerX = cvRound(circles[i][0]);
@@ -36,6 +36,5 @@ int detectCircle(cv::Mat &image)
         }
         return numberOfCircles;
     }
-
     return -1;
 }
