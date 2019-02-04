@@ -21,7 +21,7 @@ add_subdirectory(gtest)
 
 
 if(WIN32)
-    target_link_libraries(Computer_Vision ${OpenCV_LIBS} project_files sqlite3::sqlite3)
+    target_link_libraries(Computer_Vision ${OpenCV_LIBS} source_files sqlite3::sqlite3)
 else()
-    target_link_libraries(Computer_Vision ${OpenCV_LIBS} project_files sqlite3 dl)
+    target_link_libraries(Computer_Vision ${OpenCV_LIBS} source_files sqlite3 dl)
 endif()
