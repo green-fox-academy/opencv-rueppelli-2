@@ -13,5 +13,4 @@ int SQLdeleteById(const std::string &table, int id, sqlite3* db);
 int SQLdeleteLast(const std::string &table, sqlite3* db);
 int SQLupdateRecord(const std::string &table, std::string setNewValue, int id, sqlite3* db);
 
-
 #endif

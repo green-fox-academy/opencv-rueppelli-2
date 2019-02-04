@@ -4,13 +4,7 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 
-#include "detect_circle.h"
-
-TEST(DetectCircles, emptyInputs)
-{
-    cv::Mat image = cv::imread("");
-    EXPECT_EQ(detectCircle(image), -1);
-}
+#include "../src/detect_circle.h"
 
 TEST(DetectCircles, noCircle)
 {

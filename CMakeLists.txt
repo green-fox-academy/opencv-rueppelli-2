@@ -13,10 +13,10 @@ find_package(SQLITE3 REQUIRED)
 
 add_executable(Computer_Vision main.cpp)
 
-include_directories(files)
+include_directories(src)
 include_directories($ENV{SQlite3_inc})
 include_directories(${OpenCV_INCLUDE_DIRS})
-add_subdirectory(files)
+add_subdirectory(src)
 add_subdirectory(gtest)
 
 
