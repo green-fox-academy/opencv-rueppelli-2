@@ -111,6 +111,3 @@ int SQLupdateRecord(const std::string &table, std::string setNewValue, int id, s
 
     return 1;
 }
-
-
-

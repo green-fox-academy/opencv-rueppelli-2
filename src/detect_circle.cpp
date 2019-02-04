@@ -2,15 +2,12 @@
 
 int detectCircle(cv::Mat &image)
 {
-    if(!image.empty()) {
-
-        cv::Mat gray;
-        cvtColor(image, gray, cv::COLOR_BGR2GRAY);
-        GaussianBlur(gray, gray, cv::Size(5, 5), 0, 0);
+        GaussianBlur(image, image, cv::Size(5, 5), 0, 0);
 
         std::vector<cv::Vec3f> circles;
-        HoughCircles(gray, circles, cv::HOUGH_GRADIENT, 1, gray.rows/6, 100, 30, 0, 0);
+        HoughCircles(image, circles, cv::HOUGH_GRADIENT, 1, image.rows/6, 100, 30, 0, 0);
         int numberOfCircles = 0;
+        cvtColor(image, image, cv::COLOR_GRAY2BGR);
 
         for (size_t i = 0; i < circles.size(); i++) {
 
@@ -35,6 +32,4 @@ int detectCircle(cv::Mat &image)
             numberOfCircles++;
         }
         return numberOfCircles;
-    }
-    return -1;
 }
