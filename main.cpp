@@ -5,6 +5,7 @@
 
 #include "sqlite_functions.h"
 #include "detect_circle.h"
+#include "sort_functions.h"
 
 #define NAME "Computer Vision"
 
