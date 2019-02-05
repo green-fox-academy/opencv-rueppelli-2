@@ -10,7 +10,6 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName)
     return 0;
 }
 
-
 int SQLgeneralConvert(const std::string &sqlCommand, sqlite3* db)
 {
     char buffer[100];
@@ -25,7 +24,6 @@ int SQLgeneralConvert(const std::string &sqlCommand, sqlite3* db)
 
     return 1;
 }
-
 
 int SQLcreateRecord(std::string tableName, std::string path, long long int processTime, int circles, sqlite3* db)
 {
@@ -44,7 +42,6 @@ int SQLcreateRecord(std::string tableName, std::string path, long long int proce
 
     return 1;
 }
-
 
 int SQLselectQuery(std::string values, std::string table, sqlite3* db)
 {
