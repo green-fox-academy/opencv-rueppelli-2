@@ -26,7 +26,7 @@ TEST(DetectCircles, overlayCircles)
     EXPECT_EQ(detectCircle(image), 3);
 }
 
-TEST(FastestSorting, increasingIntArray)
+TEST(FastestSortingStep, increasingIntArray)
 {
    srand(time(nullptr));
 
@@ -37,7 +37,6 @@ TEST(FastestSorting, increasingIntArray)
    int bubbleSortArray[size];
    int quickSortArray[size];
 
-   int low;
    int randomNumber = 0;
 
    for (int i = 0; i < size; ++i) {
@@ -56,13 +55,16 @@ TEST(FastestSorting, increasingIntArray)
 
    int* newSelectionSort = selectionSort(selectionSortArray, size, counterSelection);
    int* newInsertionSort = insertionSort(insertionSortArray, size, counterInsertion);
-   int* newBubbleSort = bubbleSort(bubbleSortArray, size, counterInsertion, 0);
-   int* newQuickSort = quickSort(quickSortArray, low, size, counterInsertion, 0);
+   int* newBubbleSort = bubbleSort(bubbleSortArray, size, counterBubble);
 
-   ASSERT_LT(counterSelection, counterInsertion);
+   int low = quickSortArray[0];
+   int high = quickSortArray[size-1];
+   int* newQuickSort = quickSort(quickSortArray, low, high, counterQuick);
+
+   ASSERT_LT(counterQuick, counterInsertion);
 }
 
-TEST(FastestSorting, decrasingIntArray)
+TEST(FastestSortingStep, decrasingIntArray)
 {
     srand(time(nullptr));
 
@@ -73,7 +75,6 @@ TEST(FastestSorting, decrasingIntArray)
     int bubbleSortArray[size];
     int quickSortArray[size];
 
-    int low;
     int randomNumber = 0;
 
     for (int i = 0; i < size; ++i) {
@@ -92,13 +93,16 @@ TEST(FastestSorting, decrasingIntArray)
 
     int* newSelectionSort = selectionSort(selectionSortArray, size, counterSelection, 0);
     int* newInsertionSort = insertionSort(insertionSortArray, size, counterInsertion, 0);
-    int* newBubbleSort = bubbleSort(bubbleSortArray, size, counterInsertion, 0);
-    int* newQuickSort = quickSort(quickSortArray, low, size, counterInsertion, 0);
+    int* newBubbleSort = bubbleSort(bubbleSortArray, size, counterBubble, 0);
 
-    ASSERT_LT(counterSelection, counterInsertion);
+    int low = quickSortArray[0];
+    int high = quickSortArray[size-1];
+    int* newQuickSort = quickSort(quickSortArray, low, high, counterQuick, 0);
+
+    ASSERT_LT(counterQuick, counterInsertion);
 }
 
-TEST(FastestSorting, increasingIntVector)
+TEST(FastestSortingStep, increasingIntVector)
 {
     srand(time(nullptr));
 
@@ -109,7 +113,6 @@ TEST(FastestSorting, increasingIntVector)
     std::vector<int> bubbleSortVector;
     std::vector<int> quickSortVector;
 
-    int low;
     int randomNumber = 0;
 
     for (int i = 0; i < size; ++i) {
@@ -128,13 +131,16 @@ TEST(FastestSorting, increasingIntVector)
 
     std::vector<int> newSelectionSort = selectionSort(selectionSortVector, counterSelection);
     std::vector<int> newInsertionSort = insertionSort(insertionSortVector, counterInsertion);
-    std::vector<int> newBubbleSort = bubbleSort(bubbleSortVector, counterInsertion, 0);
-    std::vector<int> newQuickSort = quickSort(quickSortVector, low, size, counterInsertion, 0);
+    std::vector<int> newBubbleSort = bubbleSort(bubbleSortVector, counterBubble);
 
-    ASSERT_LT(counterSelection, counterInsertion);
+    int low = quickSortVector[0];
+    int high = quickSortVector[size-1];
+    std::vector<int> newQuickSort = quickSort(quickSortVector, low, high, counterQuick);
+
+    ASSERT_LT(counterQuick, counterInsertion);
 }
 
-TEST(FastestSorting, decrasingIntVector)
+TEST(FastestSortingStep, decrasingIntVector)
 {
     srand(time(nullptr));
 
@@ -145,7 +151,6 @@ TEST(FastestSorting, decrasingIntVector)
     std::vector<int> bubbleSortVector;
     std::vector<int> quickSortVector;
 
-    int low;
     int randomNumber = 0;
 
     for (int i = 0; i < size; ++i) {
@@ -164,13 +169,16 @@ TEST(FastestSorting, decrasingIntVector)
 
     std::vector<int> newSelectionSort = selectionSort(selectionSortVector, counterSelection, 0);
     std::vector<int> newInsertionSort = insertionSort(insertionSortVector, counterInsertion, 0);
-    std::vector<int> newBubbleSort = bubbleSort(bubbleSortVector, counterInsertion, 0);
-    std::vector<int> newQuickSort = quickSort(quickSortVector, low, size, counterInsertion, 0);
+    std::vector<int> newBubbleSort = bubbleSort(bubbleSortVector, counterBubble, 0);
 
-    ASSERT_LT(counterSelection, counterInsertion);
+    int low = quickSortVector[0];
+    int high = quickSortVector[size-1];
+    std::vector<int> newQuickSort = quickSort(quickSortVector, low, high, counterQuick, 0);
+
+    ASSERT_LT(counterQuick, counterInsertion);
 }
 
-TEST(FastestSorting, byTimeIntArray)
+TEST(FastestSortingTime, byTimeIntArray)
 {
     srand(time(nullptr));
 
@@ -181,7 +189,6 @@ TEST(FastestSorting, byTimeIntArray)
     int bubbleSortArray[size];
     int quickSortArray[size];
 
-    int low;
     int randomNumber = 0;
 
     for (int i = 0; i < size; ++i) {
@@ -218,15 +225,17 @@ TEST(FastestSorting, byTimeIntArray)
     int64 tb1 = cv::getTickCount();
     timeBubble = (tb1-tb0)/cv::getTickFrequency();
 
+    int low = quickSortArray[0];
+    int high = quickSortArray[size-1];
     int64 tq0 = cv::getTickCount();
-    int* newQuickSort = quickSort(quickSortArray, low, size, counterInsertion, 0);
+    int* newQuickSort = quickSort(quickSortArray, low, high, counterQuick, 0);
     int64 tq1 = cv::getTickCount();
     timeQuick = (tq1-tq0)/cv::getTickFrequency();
 
-    ASSERT_LT(timeInsertion, timeSelection);
+    ASSERT_LT(timeQuick, timeInsertion);
 }
 
-TEST(FastestSorting, byTimeIntVector)
+TEST(FastestSortingTime, byTimeIntVector)
 {
     srand(time(nullptr));
 
@@ -237,7 +246,6 @@ TEST(FastestSorting, byTimeIntVector)
     std::vector<int> bubbleSortVector;
     std::vector<int> quickSortVector;
 
-    int low;
     int randomNumber = 0;
 
     for (int i = 0; i < size; ++i) {
@@ -270,12 +278,14 @@ TEST(FastestSorting, byTimeIntVector)
     timeInsertion = (ti1-ti0)/cv::getTickFrequency();
 
     int64 tb0 = cv::getTickCount();
-    std::vector<int> newBubbleSort = bubbleSort(bubbleSortVector, counterInsertion, 0);
+    std::vector<int> newBubbleSort = bubbleSort(bubbleSortVector, counterBubble, 0);
     int64 tb1 = cv::getTickCount();
     timeBubble = (tb1-tb0)/cv::getTickFrequency();
 
+    int low = quickSortVector[0];
+    int high = quickSortVector[size-1];
     int64 tq0 = cv::getTickCount();
-    std::vector<int> newQuickSort = quickSort(quickSortVector, low, size, counterQuick, 0);
+    std::vector<int> newQuickSort = quickSort(quickSortVector, low, high, counterQuick, 0);
     int64 tq1 = cv::getTickCount();
     timeQuick = (tq1-tq0)/cv::getTickFrequency();
 
