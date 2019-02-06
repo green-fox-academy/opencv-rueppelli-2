@@ -8,5 +8,6 @@
 
 cv::Mat removeLightWithDifference(cv::Mat image, cv::Mat pattern);
 cv::Mat removeLightWithDivision(cv::Mat image, cv::Mat pattern);
+cv::Mat removeLightWithBlur(cv::Mat image);
 
 #endif
