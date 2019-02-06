@@ -125,3 +125,115 @@ std::vector<int> insertionSort(std::vector<int> inputVector, int &stepCounter, i
     }
     return inputVector;
 }
+
+int* quickSort(int* array, int low, int high, int &stepCounter, int mode)
+{
+    int* newArray = array;
+    int i = low;
+    int j = high;
+    int pivot = array[(i + j) / 2];
+    int temp;
+
+    if (mode == 1) {
+
+        while (i <= j) {
+            while (array[i] < pivot)
+                i++;
+            while (array[j] > pivot)
+                j--;
+            if (i <= j) {
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+                i++;
+                j--;
+                stepCounter++;
+            }
+        }
+        if (j > low) {
+            quickSort(array, low, stepCounter, j);
+        }
+        if (i < high) {
+            quickSort(array, i, stepCounter, high);
+        }
+    }
+    else if (mode == 0) {
+        while (i <= j) {
+            while (array[i] > pivot)
+                i++;
+            while (array[j] < pivot)
+                j--;
+            if (i <= j) {
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+                i++;
+                j--;
+                stepCounter++;
+            }
+        }
+        if (j > low) {
+            quickSort(array, low, j, stepCounter, 0);
+        }
+        if (i < high) {
+            quickSort(array, i, high, stepCounter, 0);
+        }
+    }
+    return newArray;
+}
+
+std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &stepCounter, int mode)
+{
+    std::vector<int> newVector = vector;
+    int i = low;
+    int j = high;
+    int pivot = vector[(i + j) / 2];
+    int temp = 0;
+
+    if (mode==1) {
+
+        while (i <= j) {
+            while (vector[i] < pivot)
+                i++;
+            while (vector[j] > pivot)
+                j--;
+            if (i <= j) {
+                temp = vector[i];
+                vector[i] = vector[j];
+                vector[j] = temp;
+                i++;
+                j--;
+                stepCounter++;
+            }
+        }
+        if (j > low) {
+            quickSort(vector, low, stepCounter, j);
+        }
+        if (i < high) {
+            quickSort(vector, i, stepCounter, high);
+        }
+    }
+    else if (mode == 0) {
+        while (i <= j) {
+            while (vector[i] > pivot)
+                i++;
+            while (vector[j] < pivot)
+                j--;
+            if (i <= j) {
+                temp = vector[i];
+                vector[i] = vector[j];
+                vector[j] = temp;
+                i++;
+                j--;
+                stepCounter++;
+            }
+        }
+        if (j > low) {
+            quickSort(vector, low, j, stepCounter, 0);
+        }
+        if (i < high) {
+            quickSort(vector, i, high, stepCounter, 0);
+        }
+    }
+    return newVector;
+}
