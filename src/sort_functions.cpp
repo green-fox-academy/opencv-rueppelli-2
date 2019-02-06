@@ -126,15 +126,15 @@ std::vector<int> insertionSort(std::vector<int> inputVector, int &stepCounter, i
     return inputVector;
 }
 
-int* quickSort(int *array, int low, int high, int &stepCounter, int mode)
+int* quickSort(int* array, int low, int high, int &stepCounter, int mode)
 {
-    int *newArray = array;
+    int* newArray = array;
     int i = low;
     int j = high;
     int pivot = array[(i + j) / 2];
     int temp;
 
-    if(mode == 1) {
+    if (mode == 1) {
 
         while (i <= j) {
             while (array[i] < pivot)
@@ -190,7 +190,7 @@ std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &ste
     int pivot = vector[(i + j) / 2];
     int temp = 0;
 
-    if(mode==1) {
+    if (mode==1) {
 
         while (i <= j) {
             while (vector[i] < pivot)
