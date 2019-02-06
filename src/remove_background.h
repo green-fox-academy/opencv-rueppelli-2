@@ -7,5 +7,6 @@
 #include <opencv2/highgui.hpp>
 
 cv::Mat removeLightWithDifference(cv::Mat image, cv::Mat pattern);
+cv::Mat removeLightWithDivision(cv::Mat image, cv::Mat pattern);
 
 #endif

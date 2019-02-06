@@ -54,7 +54,7 @@ int main() {
 
     long long int duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 
-    SQLcreateRecord("circles", imagePath, duration, numberOfCircles, db);
+    // SQLcreateRecord("circles", imagePath, duration, numberOfCircles, db);
     std::cout << std::endl << "Detected circles: " << numberOfCircles << std::endl;
 
     cv::imshow(NAME, blurredImage);
@@ -65,7 +65,7 @@ int main() {
     std::string patternPath = "../img/testPattern.jpg";
     cv::Mat pattern = cv::imread(patternPath);
 
-    cv::Mat removedImage = removeLightWithDifference(testImage, pattern);
+    cv::Mat removedImage = removeLightWithDivision(testImage, pattern);
     cv::imshow(NAME, removedImage);
     cv::waitKey(0);
 
