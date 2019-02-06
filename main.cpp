@@ -6,6 +6,7 @@
 #include "sqlite_functions.h"
 #include "detect_circle.h"
 #include "sort_functions.h"
+#include "remove_background.h"
 
 #define NAME "Computer Vision"
 
@@ -58,6 +59,16 @@ int main() {
 
     cv::imshow(NAME, blurredImage);
     cv::waitKey(0);
+
+    std::string testImagePath = "../img/testImage.jpg";
+    cv::Mat testImage = cv::imread(testImagePath);
+    std::string patternPath = "../img/testPattern.jpg";
+    cv::Mat pattern = cv::imread(patternPath);
+
+    cv::Mat removedImage = removeLightWithDifference(testImage, pattern);
+    cv::imshow(NAME, removedImage);
+    cv::waitKey(0);
+
     sqlite3_close(db);
 
     return 0;
