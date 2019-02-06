@@ -3,11 +3,11 @@
 std::vector<int> selectionSort(std::vector<int> &numbers, int &stepCounter, int o)
 {
     int i, j, mindex;
-    if(o == 1) {
+    if (o == 1) {
         for (i = 0; i < numbers.size(); ++i) {
             mindex = i;
             for (j = i + 1; j < numbers.size(); ++j) {
-                if(numbers[mindex] > numbers[j]) {
+                if (numbers[mindex] > numbers[j]) {
                     mindex = j;
                 }
             }
@@ -16,11 +16,11 @@ std::vector<int> selectionSort(std::vector<int> &numbers, int &stepCounter, int 
             numbers[mindex] = swap;
             stepCounter++;
         }
-    } else if(o == 0) {
+    } else if (o == 0) {
         for (i = 0; i < numbers.size(); ++i) {
             mindex = i;
             for (j = i + 1; j < numbers.size(); ++j) {
-                if(numbers[mindex] < numbers[j]) {
+                if (numbers[mindex] < numbers[j]) {
                     mindex = j;
                 }
             }
@@ -37,11 +37,11 @@ std::vector<int> selectionSort(std::vector<int> &numbers, int &stepCounter, int 
 int* selectionSort(int array[], int size, int &stepCounter, int o)
 {
     int i, j, mindex;
-    if(o == 1) {
+    if (o == 1) {
         for (i = 0; i < size; ++i) {
             mindex = i;
             for (j = i + 1; j < size; ++j) {
-                if(array[mindex] > array[j]) {
+                if (array[mindex] > array[j]) {
                     mindex = j;
                 }
             }
@@ -50,11 +50,11 @@ int* selectionSort(int array[], int size, int &stepCounter, int o)
             array[mindex] = swap;
             stepCounter++;
         }
-    } else if(o == 0) {
+    } else if (o == 0) {
         for (i = 0; i < size; ++i) {
             mindex = i;
             for (j = i + 1; j < size; ++j) {
-                if(array[mindex] < array[j]) {
+                if (array[mindex] < array[j]) {
                     mindex = j;
                 }
             }
@@ -236,4 +236,48 @@ std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &ste
         }
     }
     return newVector;
+}
+
+std::vector<int> bubbleSort(std::vector<int> &a, int &stepCounter, int n)
+{
+    for (size_t i = 1; i < a.size(); ++i) {
+        for (size_t j = 0; j < a.size() - 1; ++j) {
+            if (n == 1) {
+                if (a[j] > a[i]) {
+                    std::swap(a[j], a[i]);
+                }
+            } else if (n == 0) {
+                if (a[j] < a[i]) {
+                    std::swap(a[j], a[i]);
+                }
+            }
+            stepCounter++;
+        }
+    }
+    return a;
+}
+
+int* bubbleSort(int arr[], int size, int &stepCounter, int n)
+{
+    int i, j;
+    for (i = 0; i < size-1; i++) {
+        for (j = 0; j < size-i-1; j++){
+            if (n == 1) {
+                if (arr[j] > arr[j+1]){
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                    stepCounter++;
+                }
+            } else if (n == 0) {
+                if (arr[j] < arr[j+1]){
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                    stepCounter++;
+                }
+            }
+        }
+    }
+    return arr;
 }
