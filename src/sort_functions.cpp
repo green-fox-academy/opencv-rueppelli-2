@@ -125,6 +125,7 @@ std::vector<int> insertionSort(std::vector<int> inputVector, int &stepCounter, i
     }
     return inputVector;
 }
+
 int* quickSort(int *array, int low, int high, int &stepCounter, int mode)
 {
     int *newArray = array;
@@ -149,7 +150,7 @@ int* quickSort(int *array, int low, int high, int &stepCounter, int mode)
                 stepCounter++;
             }
         }
-        if (j > low){
+        if (j > low) {
             quickSort(array, low, stepCounter, j);
         }
         if (i < high) {
@@ -171,15 +172,16 @@ int* quickSort(int *array, int low, int high, int &stepCounter, int mode)
                 stepCounter++;
             }
         }
-        if (j > low){
+        if (j > low) {
             quickSort(array, low, j, stepCounter, 0);
         }
-        if (i < high){
+        if (i < high) {
             quickSort(array, i, high, stepCounter, 0);
         }
     }
     return newArray;
 }
+
 std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &stepCounter, int mode)
 {
     std::vector<int> newVector = vector;
@@ -195,7 +197,8 @@ std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &ste
                 i++;
             while (vector[j] > pivot)
                 j--;
-            if (i <= j) {vector[i];
+            if (i <= j) {
+                temp = vector[i];
                 vector[i] = vector[j];
                 vector[j] = temp;
                 i++;
@@ -203,7 +206,7 @@ std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &ste
                 stepCounter++;
             }
         }
-        if (j > low){
+        if (j > low) {
             quickSort(vector, low, stepCounter, j);
         }
         if (i < high) {
@@ -225,14 +228,12 @@ std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &ste
                 stepCounter++;
             }
         }
-        if (j > low){
+        if (j > low) {
             quickSort(vector, low, j, stepCounter, 0);
         }
-        if (i < high){
+        if (i < high) {
             quickSort(vector, i, high, stepCounter, 0);
         }
     }
-
     return newVector;
 }
-
