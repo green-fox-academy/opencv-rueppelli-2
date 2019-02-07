@@ -10,4 +10,7 @@ cv::Mat removeLightWithDifference(cv::Mat image, cv::Mat pattern);
 cv::Mat removeLightWithDivision(cv::Mat image, cv::Mat pattern);
 cv::Mat removeLightWithBlur(cv::Mat image);
 
+cv::Mat binarizeImage(cv::Mat image);
+cv::Mat binarizeImageInverse(cv::Mat image);
+
 #endif
