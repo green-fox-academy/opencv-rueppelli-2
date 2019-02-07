@@ -1,6 +1,6 @@
 #include "sort_functions.h"
 
-std::vector<int> selectionSort(std::vector<int> &numbers, int &stepCounter, int o)
+std::vector<int> selectionSort(std::vector<int> numbers, int &stepCounter, int o)
 {
     int i, j, mindex;
     if (o == 1) {
@@ -238,7 +238,7 @@ std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &ste
     return newVector;
 }
 
-std::vector<int> bubbleSort(std::vector<int> &a, int &stepCounter, int n)
+std::vector<int> bubbleSort(std::vector<int> a, int &stepCounter, int n)
 {
     for (size_t i = 1; i < a.size(); ++i) {
         for (size_t j = 0; j < a.size() - 1; ++j) {
