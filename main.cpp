@@ -7,6 +7,7 @@
 #include "detect_circle.h"
 #include "sort_functions.h"
 #include "remove_background.h"
+#include "edge_detection.h"
 
 #define NAME "Computer Vision"
 
@@ -69,6 +70,15 @@ int main() {
     cv::imshow(NAME, removedImage);
     cv::waitKey(0);
 
+    std::string shapesPath = "../img/polygons.jpg";
+    cv::Mat shapes = cv::imread(shapesPath, cv::IMREAD_GRAYSCALE);
+    std::string shapesPatternPath = "../img/polygonsPattern.jpg";
+    cv::Mat shapesPattern = cv::imread(shapesPatternPath, cv::IMREAD_GRAYSCALE);
+
+    cv::Mat clearShapes = detectEdge(shapes, shapesPattern);
+    cv::imshow(NAME, clearShapes);
+    cv::waitKey(0);
+
     sqlite3_close(db);
 
     return 0;
@@ -76,7 +86,7 @@ int main() {
 
 void gaussian(int, void *)
 {
-    cv::GaussianBlur(image, blurredImage, cv::Size(2*sliderGaussian+1, 2*sliderGaussian+1), sliderGaussian);
+    cv::GaussianBlur(image, blurredImage, cv::Size(2 * sliderGaussian + 1, 2 * sliderGaussian +1), sliderGaussian);
     imshow(NAME, blurredImage);
 }
 void median(int, void *)
