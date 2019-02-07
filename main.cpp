@@ -7,7 +7,6 @@
 #include "detect_circle.h"
 #include "sort_functions.h"
 #include "remove_background.h"
-#include "edge_detection.h"
 
 #define NAME "Computer Vision"
 
@@ -61,22 +60,10 @@ int main() {
     cv::imshow(NAME, blurredImage);
     cv::waitKey(0);
 
-    std::string testImagePath = "../img/testImage.jpg";
-    cv::Mat testImage = cv::imread(testImagePath, cv::IMREAD_GRAYSCALE);
-    std::string patternPath = "../img/testPattern.jpg";
-    cv::Mat pattern = cv::imread(patternPath, cv::IMREAD_GRAYSCALE);
-
-    cv::Mat removedImage = removeLightWithDivision(testImage, pattern);
-    cv::imshow(NAME, removedImage);
-    cv::waitKey(0);
-
-    std::string shapesPath = "../img/polygons.jpg";
-    cv::Mat shapes = cv::imread(shapesPath, cv::IMREAD_GRAYSCALE);
-    std::string shapesPatternPath = "../img/polygonsPattern.jpg";
-    cv::Mat shapesPattern = cv::imread(shapesPatternPath, cv::IMREAD_GRAYSCALE);
-
-    cv::Mat clearShapes = binarizeImageInverse(shapes, shapesPattern);
-    cv::imshow(NAME, clearShapes);
+    cv::Mat basicImage = cv::imread("../img/polygons.jpg", cv::IMREAD_GRAYSCALE);
+    cv::Mat removedImage = removeLightWithBlur(basicImage);
+    cv::Mat binarizedImage = binarizeImageInverse(removedImage);
+    cv::imshow(NAME, binarizedImage);
     cv::waitKey(0);
 
     sqlite3_close(db);
