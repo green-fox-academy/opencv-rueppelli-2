@@ -13,4 +13,6 @@ cv::Mat removeLightWithBlur(cv::Mat image);
 cv::Mat binarizeImage(cv::Mat image);
 cv::Mat binarizeImageInverse(cv::Mat image);
 
+cv::Mat connectComponents(cv::Mat image);
+
 #endif

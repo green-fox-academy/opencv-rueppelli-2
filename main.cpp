@@ -20,6 +20,7 @@ int sliderGaussian = 0;
 int sliderMedian = 0;
 
 int main() {
+    srand(time(nullptr));
 
     sqlite3* db;
     int rc = sqlite3_open("../files/opencv-2.db", &db);
@@ -60,10 +61,11 @@ int main() {
     cv::imshow(NAME, blurredImage);
     cv::waitKey(0);
 
-    cv::Mat basicImage = cv::imread("../img/polygons.jpg", cv::IMREAD_GRAYSCALE);
+    cv::Mat basicImage = cv::imread("../img/shapes.jpg", cv::IMREAD_GRAYSCALE);
     cv::Mat removedImage = removeLightWithBlur(basicImage);
-    cv::Mat binarizedImage = binarizeImageInverse(removedImage);
-    cv::imshow(NAME, binarizedImage);
+    cv::Mat binarizedImage = binarizeImage(removedImage);
+    cv::Mat connectedImage = connectComponents(binarizedImage);
+    cv::imshow(NAME, connectedImage);
     cv::waitKey(0);
 
     sqlite3_close(db);

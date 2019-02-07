@@ -24,7 +24,7 @@ cv::Mat removeLightWithBlur(cv::Mat image)
 cv::Mat binarizeImage(cv::Mat image)
 {
     cv::Mat newImage;
-    cv::threshold(image, newImage, 57, 255, cv::THRESH_BINARY);
+    cv::threshold(image, newImage, 15, 255, cv::THRESH_BINARY);
 
     return newImage;
 }
@@ -32,7 +32,32 @@ cv::Mat binarizeImage(cv::Mat image)
 cv::Mat binarizeImageInverse(cv::Mat image)
 {
     cv::Mat newImage;
-    cv::threshold(image, newImage, 100, 255, cv::THRESH_BINARY_INV);
+    cv::threshold(image, newImage, 15, 255, cv::THRESH_BINARY_INV);
 
+    return newImage;
+}
+
+
+cv::Mat connectComponents(cv::Mat image)
+{
+    cv::Mat newImage;
+    cv::Mat labels;
+
+    int nLabels = cv::connectedComponents(image, labels);
+    std::cout << nLabels << " objects detected!" << std::endl;
+
+    newImage = cv::Mat::zeros(image.rows, image.cols, CV_8UC3);
+
+    int randomColorB = 0;
+    int randomColorG = 0;
+    int randomColorR = 0;
+
+    for (int i = 1; i < nLabels; i++) {
+        randomColorB = (rand() % 255) + 1;
+        randomColorG = (rand() % 255) + 1;
+        randomColorR = (rand() % 255) + 1;
+        cv::Mat mask = labels == i;
+        newImage.setTo(cv::Scalar(randomColorB, randomColorG, randomColorR), mask);
+    }
     return newImage;
 }
