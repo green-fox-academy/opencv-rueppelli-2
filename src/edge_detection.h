@@ -8,6 +8,7 @@
 
 #include "remove_background.h"
 
-cv::Mat detectEdge(cv::Mat image, cv::Mat pattern);
+cv::Mat binarizeImage(cv::Mat image, cv::Mat pattern);
+cv::Mat binarizeImageInverse(cv::Mat image, cv::Mat pattern);
 
 #endif

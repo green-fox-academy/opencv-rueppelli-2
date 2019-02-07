@@ -75,7 +75,7 @@ int main() {
     std::string shapesPatternPath = "../img/polygonsPattern.jpg";
     cv::Mat shapesPattern = cv::imread(shapesPatternPath, cv::IMREAD_GRAYSCALE);
 
-    cv::Mat clearShapes = detectEdge(shapes, shapesPattern);
+    cv::Mat clearShapes = binarizeImageInverse(shapes, shapesPattern);
     cv::imshow(NAME, clearShapes);
     cv::waitKey(0);
 
