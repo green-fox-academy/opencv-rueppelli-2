@@ -14,5 +14,6 @@ cv::Mat binarizeImage(cv::Mat image);
 cv::Mat binarizeImageInverse(cv::Mat image);
 
 cv::Mat connectComponents(cv::Mat image);
+cv::Mat connectComponentsWithStats(cv::Mat image);
 
 #endif
