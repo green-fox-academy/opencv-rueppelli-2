@@ -61,3 +61,29 @@ cv::Mat connectComponents(cv::Mat image)
     }
     return newImage;
 }
+
+cv::Mat connectComponentsWithStats(cv::Mat image)
+{
+    cv::Mat labels;
+    cv::Mat newImage;
+    cv::Mat stats;
+    cv::Mat centroids;
+
+    int nLabels = cv::connectedComponentsWithStats(image, labels, stats, centroids);
+    std::cout << nLabels << " objects detected!" << std::endl;
+
+    newImage = cv::Mat::zeros(image.rows, image.cols, CV_8UC3);
+
+    int randomColorB = 0;
+    int randomColorG = 0;
+    int randomColorR = 0;
+
+    for (int i = 1; i < nLabels; i++) {
+        randomColorB = (rand() % 255) + 1;
+        randomColorG = (rand() % 255) + 1;
+        randomColorR = (rand() % 255) + 1;
+        cv::Mat mask = labels == i;
+        newImage.setTo(cv::Scalar(randomColorB, randomColorG, randomColorR), mask);
+    }
+    return newImage;
+}

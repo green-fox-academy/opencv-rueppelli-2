@@ -64,7 +64,7 @@ int main() {
     cv::Mat basicImage = cv::imread("../img/shapes.jpg", cv::IMREAD_GRAYSCALE);
     cv::Mat removedImage = removeLightWithBlur(basicImage);
     cv::Mat binarizedImage = binarizeImage(removedImage);
-    cv::Mat connectedImage = connectComponents(binarizedImage);
+    cv::Mat connectedImage = connectComponentsWithStats(binarizedImage);
     cv::imshow(NAME, connectedImage);
     cv::waitKey(0);
 
