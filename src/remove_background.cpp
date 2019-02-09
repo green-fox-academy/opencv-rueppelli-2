@@ -78,12 +78,16 @@ cv::Mat connectComponentsWithStats(cv::Mat image)
     int randomColorG = 0;
     int randomColorR = 0;
 
+    std::vector<int> areas;
+
     for (int i = 1; i < nLabels; i++) {
         randomColorB = (rand() % 255) + 1;
         randomColorG = (rand() % 255) + 1;
         randomColorR = (rand() % 255) + 1;
         cv::Mat mask = labels == i;
         newImage.setTo(cv::Scalar(randomColorB, randomColorG, randomColorR), mask);
+        std::cout << "area of detected shape" << i << ": " << stats.at<int>(i, cv::CC_STAT_AREA) << std::endl;
+        areas.push_back(stats.at<int>(i, cv::CC_STAT_AREA));
     }
     return newImage;
 }
