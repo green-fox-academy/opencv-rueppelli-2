@@ -1,4 +1,5 @@
 #include "remove_background.h"
+#include "sort_functions.h"
 
 cv::Mat removeLightWithDifference(cv::Mat image, cv::Mat pattern)
 {
@@ -86,8 +87,20 @@ cv::Mat connectComponentsWithStats(cv::Mat image)
         randomColorR = (rand() % 255) + 1;
         cv::Mat mask = labels == i;
         newImage.setTo(cv::Scalar(randomColorB, randomColorG, randomColorR), mask);
-        std::cout << "area of detected shape" << i << ": " << stats.at<int>(i, cv::CC_STAT_AREA) << std::endl;
         areas.push_back(stats.at<int>(i, cv::CC_STAT_AREA));
+    }
+
+    int sortingStepCounter = 0;
+    selectionSort(areas, sortingStepCounter, 1);
+
+    for (int j = 0; j < areas.size(); ++j) {
+        for (int i = 1; i < nLabels; i++ ) {
+            if(stats.at<int>(i, cv::CC_STAT_AREA) == areas[j]){
+                std::string biggest = std::to_string(j + 1);
+                cv::putText(newImage, biggest, cv::Point(centroids.at<cv::Point2d>(i)),
+                            cv::FONT_HERSHEY_SIMPLEX, 0.4, cv::Scalar(0,0,0), 1, 8, false);
+            }
+        }
     }
     return newImage;
 }
