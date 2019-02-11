@@ -13,13 +13,12 @@ cv::Mat removeLightWithDivision(cv::Mat image, cv::Mat pattern)
     return newImage;
 }
 
-cv::Mat removeLightWithBlur(cv::Mat image)
+cv::Mat createLightPattern(cv::Mat image)
 {
     cv::Mat pattern;
     cv::blur(image, pattern, cv::Size(image.cols / 3, image.rows / 3));
-    cv::Mat newImage = pattern - image;
 
-    return newImage;
+    return pattern;
 }
 
 cv::Mat binarizeImage(cv::Mat image)
@@ -91,11 +90,11 @@ cv::Mat connectComponentsWithStats(cv::Mat image)
     }
 
     int sortingStepCounter = 0;
-    selectionSort(areas, sortingStepCounter, 1);
+    std::vector<int> sortedAreas = selectionSort(areas, sortingStepCounter, 0);
 
-    for (int j = 0; j < areas.size(); ++j) {
+    for (int j = 0; j < sortedAreas.size(); ++j) {
         for (int i = 1; i < nLabels; i++ ) {
-            if(stats.at<int>(i, cv::CC_STAT_AREA) == areas[j]){
+            if(stats.at<int>(i, cv::CC_STAT_AREA) == sortedAreas[j]){
                 std::string biggest = std::to_string(j + 1);
                 cv::putText(newImage, biggest, cv::Point(centroids.at<cv::Point2d>(i)),
                             cv::FONT_HERSHEY_SIMPLEX, 0.4, cv::Scalar(0,0,0), 1, 8, false);
