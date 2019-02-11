@@ -17,7 +17,6 @@
 [Bubble sort](#Bubble-sort)
 
 ### Detect circle
-
 ```int detectCircle(cv::Mat &image)```
    - Purpose of the function:
      - it detects the circles on the input image
@@ -26,7 +25,6 @@
    - returntype a number of found circles on the input image
 
 ### Light patterns
-
 ```cv:: Mat removeLightWithDifference(cv:: Mat image, cv:: Mat pattern)```
    - Purpose of the function:
      - to extract the image from pattern
