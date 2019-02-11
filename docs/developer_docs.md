@@ -2,68 +2,86 @@
 
 ## developer documentation
 
-[detect circle](#detectCircle)
+[Detect circle](#Detect-circle)
 
-[remove background](#remove background) 
+[Light patterns](#Light-patterns) 
 
-[sortings](#sortings)
+[Binary images](#Binary-images)
 
-### detect circle
+[Selection sort](#Selection-sort)
 
-int detectCircle(cv::Mat &image)
-   - input is an image, 
+[Insertion sort](#Insertion-sort)
+
+[Quick sort](#Quick-sort)
+
+[Bubble sort](#Bubble-sort)
+
+### Detect circle
+
+```int detectCircle(cv::Mat &image)```
+   - Purpose of the function:
+     - it detects the circles on the input image
+   - Parameter:
+     - image: input is an image, 
    - returntype a number of found circles on the input image
 
-### remove background
+### Light patterns
 
-- cv:: Mat removeLightWithDifference(cv:: Mat image, cv:: Mat pattern)
-   - What does this program do?
+```cv:: Mat removeLightWithDifference(cv:: Mat image, cv:: Mat pattern)```
+   - Purpose of the function:
      - to extract the image from pattern
-   - Parameters
+   - Parameters:
      - image: Input image
      - pattern: Input image with pattern
    - returntype a new image
    
-- cv:: Mat removeLightWithDivision(cv:: Mat image, cv:: Mat pattern)
-   - What does this program do?
+```cv:: Mat removeLightWithDivision(cv:: Mat image, cv:: Mat pattern)```
+   - Purpose of the function:
      - to device the pattern with the image
-   - Parameters
+   - Parameters:
      - image: Input image
      - pattern: Input image with pattern
    - returntype a new image
    
-- cv:: Mat removeLightWithBlur(cv:: Mat image)
-   - What does this program do?
+```cv:: Mat removeLightWithBlur(cv:: Mat image)```
+   - Purpose of the function:
      - remove light with blur
-   - Parameters
-     - image: Input image
-   - returntype a new image
-   
-- cv::Mat binarizeImage(cv::Mat image)
-   - What does this program do?
-     - 
-   - Parameters
-     - image: Input image
-   - returntype a new image
-   
-- cv::Mat binarizeImageInverse(cv::Mat image)
-   - What does this program do?
-     - 
-   - Parameters
+   - Parameter:
      - image: Input image
    - returntype a new image
 
-- cv::Mat connectComponents(cv::Mat image);
-   - What does this program do?
-     -
-   - Parameters
+### Binary images    
+```cv::Mat binarizeImage(cv::Mat image)```
+   - Purpose of the function:
+     - it binarize the images
+   - Parameter:
+     - image: Input image
+   - returntype a new image
+   
+```cv::Mat binarizeImageInverse(cv::Mat image)```
+   - Purpose of the function:
+     - it binarize the input image
+   - Parameter:
+     - image: Input image
+   - returntype a new image
+
+```cv::Mat connectComponents(cv::Mat image)```
+   - Purpose of the function:
+     - computes the connected components labeled image of boolean image
+   - Parameter:
+     - image: Input image
+   - returntype a new image
+   
+```cv::Mat connectComponentsWithStats(cv::Mat image)```
+   - Purpose of the function:
+     - computes the connected components labeled image of boolean image and also produces a statistics output for each label
+   - Parameter:
      - image: Input image
    - returntype a new image
 
    
-### Sortings
-#### Selection sort
-- std::vector<int> selectionSort(std::vector<int> numbers, int &stepCounter, int o = 1);
+### Selection sort
+```std::vector<int> selectionSort(std::vector<int> numbers, int &stepCounter, int o = 1)```
    - Purpose of the function:
      - it sorts the vector's elements descending or ascending order based on the o's value.
    - parameteres:
@@ -73,7 +91,7 @@ int detectCircle(cv::Mat &image)
           numbers in increasing order. If the second parameter is not provided it should sort the given list is increasing order.
    - returntype the sorted vector
    
-- int* selectionSort(int array[], int size, int &stepCounter, int o = 1);
+```int* selectionSort(int array[], int size, int &stepCounter, int o = 1)```
    - Purpose of the function:
      - it sorts the array's elements descending or ascending order based on the o's value.
    - parameteres:
@@ -84,8 +102,8 @@ int detectCircle(cv::Mat &image)
           numbers in increasing order. If the second parameter is not provided it should sort the given list is increasing order.
    - returntype the sorted array
 
-#### Insertion sort
-- std::vector<int> insertionSort(std::vector<int> inputVector, int &stepCounter, int order = 1);
+### Insertion sort
+```std::vector<int> insertionSort(std::vector<int> inputVector, int &stepCounter, int order = 1)```
    - Purpose of the function:
      - it sorts the array's elements descending or ascending order based on the order's value.
    - parameteres:
@@ -97,7 +115,7 @@ int detectCircle(cv::Mat &image)
               order.
    - returntype the sorted array
 
-- int* insertionSort(int* inputArray, int size, int &stepCounter, int order = 1);
+```int* insertionSort(int* inputArray, int size, int &stepCounter, int order = 1)```
    - Purpose of the function:
      - it sorts the vector's elements descending or ascending order based on the order's value.
    - parameteres:
@@ -108,8 +126,8 @@ int detectCircle(cv::Mat &image)
               order.
    - returntype the sorted vector
    
-#### Quick sort
-- int* quickSort(int* array, int low, int high, int &stepCounter, int mode = 1);
+### Quick sort
+```int* quickSort(int* array, int low, int high, int &stepCounter, int mode = 1)```
   - Purpose of the function:
     - it sorts the array's elements descending or ascending order based on the mode's value.
    - parameteres:
@@ -122,7 +140,7 @@ int detectCircle(cv::Mat &image)
               order.
    - returntype the sorted array
    
-- std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &stepCounter, int mode = 1);
+```std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &stepCounter, int mode = 1)```
   - Purpose of the function:
     - it sorts the vector's elements descending or ascending order based on the mode's value.
    - parameteres:
@@ -135,8 +153,8 @@ int detectCircle(cv::Mat &image)
               order.
    - returntype the sorted vector
    
-#### Bubble sort
-- std::vector<int> bubbleSort(std::vector<int> a, int &stepCounter, int n = 1);
+### Bubble sort
+```std::vector<int> bubbleSort(std::vector<int> a, int &stepCounter, int n = 1)```
   - Purpose of the function:
     - it sorts the vector's elements descending or ascending order based on the mode's value.
    - parameteres:
@@ -146,7 +164,7 @@ int detectCircle(cv::Mat &image)
           input numbers in increasing order. If the second parameter is not provided it should sort the given list is increasing order.
    - returntype the sorted vector
    
-- int* bubbleSort(int arr[], int size, int &stepCounter, int n = 1);
+```int* bubbleSort(int arr[], int size, int &stepCounter, int n = 1)```
   - Purpose of the function:
     - it sorts the array's elements descending or ascending order based on the mode's value.
    - parameteres:
@@ -156,7 +174,7 @@ int detectCircle(cv::Mat &image)
           input numbers in increasing order. If the second parameter is not provided it should sort the given list is increasing order.
    - returntype the sorted array
    
- #### functions in main
+ ### functions in main
  - void gaussian(int, void *)
  - void median(int, void *)
  - void trackbar()
