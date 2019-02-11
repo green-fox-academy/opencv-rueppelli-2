@@ -62,7 +62,8 @@ int main() {
     cv::waitKey(0);
 
     cv::Mat basicImage = cv::imread("../img/shapes.jpg", cv::IMREAD_GRAYSCALE);
-    cv::Mat removedImage = removeLightWithBlur(basicImage);
+    cv::Mat patternImage = createLightPattern(basicImage);
+    cv::Mat removedImage = removeLightWithDifference(basicImage, patternImage);
     cv::Mat binarizedImage = binarizeImage(removedImage);
     cv::Mat connectedImage = connectComponentsWithStats(binarizedImage);
     cv::imshow(NAME, connectedImage);
@@ -75,7 +76,7 @@ int main() {
 
 void gaussian(int, void *)
 {
-    cv::GaussianBlur(image, blurredImage, cv::Size(2 * sliderGaussian + 1, 2 * sliderGaussian +1), sliderGaussian);
+    cv::GaussianBlur(image, blurredImage, cv::Size(2 * sliderGaussian + 1, 2 * sliderGaussian + 1), sliderGaussian);
     imshow(NAME, blurredImage);
 }
 void median(int, void *)
