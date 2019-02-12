@@ -17,7 +17,6 @@
 [Bubble sort](#Bubble-sort)
 
 ### Detect circle
-
 ```int detectCircle(cv::Mat &image)```
    - Purpose of the function:
      - it detects the circles on the input image
@@ -26,14 +25,13 @@
    - returntype a number of found circles on the input image
 
 ### Light patterns
-
 ```cv:: Mat removeLightWithDifference(cv:: Mat image, cv:: Mat pattern)```
    - Purpose of the function:
      - to extract the image from pattern
    - Parameters:
      - image: Input image
      - pattern: Input image with pattern
-   - returntype a new image
+   - returntype cv::Mat
    
 ```cv:: Mat removeLightWithDivision(cv:: Mat image, cv:: Mat pattern)```
    - Purpose of the function:
@@ -41,14 +39,14 @@
    - Parameters:
      - image: Input image
      - pattern: Input image with pattern
-   - returntype a new image
+   - returntype cv::Mat
    
 ```cv:: Mat removeLightWithBlur(cv:: Mat image)```
    - Purpose of the function:
      - remove light with blur
    - Parameter:
      - image: Input image
-   - returntype a new image
+   - returntype cv::Mat
 
 ### Binary images    
 ```cv::Mat binarizeImage(cv::Mat image)```
@@ -56,28 +54,28 @@
      - it binarize the images
    - Parameter:
      - image: Input image
-   - returntype a new image
+   - returntype cv::Mat
    
 ```cv::Mat binarizeImageInverse(cv::Mat image)```
    - Purpose of the function:
      - it binarize the input image
    - Parameter:
      - image: Input image
-   - returntype a new image
+   - returntype cv::Mat
 
 ```cv::Mat connectComponents(cv::Mat image)```
    - Purpose of the function:
      - computes the connected components labeled image of boolean image
    - Parameter:
      - image: Input image
-   - returntype a new image
+   - returntype cv::Mat
    
 ```cv::Mat connectComponentsWithStats(cv::Mat image)```
    - Purpose of the function:
      - computes the connected components labeled image of boolean image and also produces a statistics output for each label
    - Parameter:
      - image: Input image
-   - returntype a new image
+   - returntype cv::Mat
 
    
 ### Selection sort
