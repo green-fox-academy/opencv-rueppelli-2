@@ -291,3 +291,116 @@ TEST(FastestSortingTime, byTimeIntVector)
 
     ASSERT_LT(timeQuick, timeInsertion);
 }
+
+TEST(Bubblesort, increaseVector)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> bubbleSortVector;
+    std::vector<int> sortFunctionVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 100) + 1;
+        bubbleSortVector.push_back(randomNumber);
+    }
+    int counterBubble = 0;
+
+    std::vector<int> newBubbleSort = bubbleSort( bubbleSortVector, counterBubble, 1);
+
+    std::sort(bubbleSortVector.begin(), bubbleSortVector.end());
+    for (auto x : bubbleSortVector) {
+        sortFunctionVector.push_back(x);
+    }
+
+    EXPECT_EQ(newBubbleSort, sortFunctionVector);
+}
+
+TEST(Bubblesort, decreaseVector)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> bubbleSortVector;
+    std::vector<int> sortFunctionVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+        bubbleSortVector.push_back(randomNumber);
+    }
+    int counterBubble = 0;
+
+    std::vector<int> newBubbleSort = bubbleSort( bubbleSortVector, counterBubble, 0);
+
+    std::sort(bubbleSortVector.rbegin(), bubbleSortVector.rend());
+
+    for (auto x : bubbleSortVector) {
+        sortFunctionVector.push_back(x);
+    }
+
+    EXPECT_EQ(newBubbleSort, sortFunctionVector);
+}
+
+TEST(Bubblesort, increaseArray)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    int bubbleSortArray[size];
+    int sortFunctionArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+        bubbleSortArray[i] = randomNumber;
+    }
+    int counterBubble = 0;
+
+    int* newBubbleSort = bubbleSort(bubbleSortArray, size, counterBubble, 0);
+
+    int n = sizeof(bubbleSortArray)/sizeof(bubbleSortArray[0]);
+
+    std::sort(bubbleSortArray, bubbleSortArray+n);
+
+    for (int i = 0; i < n; ++i){
+        sortFunctionArray[i] = bubbleSortArray[i];
+    }
+    for (int j = 0; j < size; ++j){
+        EXPECT_EQ(newBubbleSort[j], sortFunctionArray[j]);
+    }
+}
+
+TEST(Bubblesort, decreaseArray)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    int bubbleSortArray[size];
+    int sortFunctionArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+        bubbleSortArray[i] = randomNumber;
+    }
+    int counterBubble = 0;
+
+    int* newBubbleSort = bubbleSort(bubbleSortArray, size, counterBubble, 1);
+
+    int n = sizeof(bubbleSortArray)/sizeof(bubbleSortArray[0]);
+
+    std::sort(bubbleSortArray, bubbleSortArray+n);
+
+    for (int i = n-1; i >=0; --i){
+        sortFunctionArray[i] = bubbleSortArray[i];
+    }
+    for (int j = 0; j < size; ++j){
+        EXPECT_EQ(newBubbleSort[j], sortFunctionArray[j]);
+    }
+}
