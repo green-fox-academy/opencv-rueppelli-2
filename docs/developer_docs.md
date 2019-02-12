@@ -31,7 +31,7 @@
    - Parameters:
      - image: Input image
      - pattern: Input image with pattern
-   - returntype cv::Mat
+   - returntype cv::Mat 
    
 ```cv:: Mat removeLightWithDivision(cv:: Mat image, cv:: Mat pattern)```
    - Purpose of the function:

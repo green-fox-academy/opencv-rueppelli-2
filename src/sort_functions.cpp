@@ -281,3 +281,95 @@ int* bubbleSort(int arr[], int size, int &stepCounter, int n)
     }
     return arr;
 }
+
+int* shakerSort(int* array, int size, int &stepCounter, int mode){
+    int *newArray = array;
+
+    int i;
+    int j;
+    int k;
+
+    if(mode == 1) {
+        for (k = 0; k < size;) {
+            for (i = 0; i < size - 1; i++) {
+                if (array[i] > array[i + 1]) {
+                    std::swap(array[i], array[i + 1]);
+                    stepCounter++;
+                }
+            }
+            size--;
+            for (j = size - 1; j > 0; j--) {
+                if (array[j] < array[j - 1]) {
+                    std::swap(array[j], array[j - 1]);
+                    stepCounter++;
+                }
+            }
+            k++;
+        }
+    }else if (mode == 0) {
+        for (k = 0; k < size;) {
+            for (i = 0; i < size - 1; i++) {
+                if (array[i] < array[i + 1]) {
+                    std::swap(array[i], array[i + 1]);
+                    stepCounter++;
+                }
+            }
+            size--;
+            for (j = size - 1; j > 0; j--) {
+                if (array[j] > array[j - 1]) {
+                    std::swap(array[j], array[j - 1]);
+                    stepCounter++;
+                }
+            }
+            k++;
+        }
+    }
+    return newArray;
+}
+
+std::vector<int> shakerSort(std::vector<int> &vector, int &stepCounter, int mode){
+    std::vector<int> newVector = vector;
+    int size = (int)vector.size();
+
+    int i;
+    int j;
+    int k;
+
+    if(mode == 1) {
+        for (k = 0; k < size;) {
+            for (i = 0; i < size- 1; i++) {
+                if (vector[i] > vector[i + 1]) {
+                    std::swap(vector[i], vector[i + 1]);
+                    stepCounter++;
+                }
+            }
+            size--;
+            for (j = size - 1; j > 0; j--) {
+                if (vector[j] < vector[j - 1]) {
+                    std::swap(vector[j], vector[j - 1]);
+                    stepCounter++;
+                }
+            }
+            k++;
+        }
+    }else if (mode == 0) {
+        for (k = 0; k < size;) {
+
+            for (i = 0; i < size - 1; i++) {
+                if (vector[i] < vector[i + 1]) {
+                    std::swap(vector[i], vector[i + 1]);
+                    stepCounter++;
+                }
+            }
+            size--;
+            for (j = size - 1; j > 0; j--) {
+                if (vector[j] > vector[j - 1]) {
+                    std::swap(vector[j], vector[j - 1]);
+                    stepCounter++;
+                }
+            }
+            k++;
+        }
+    }
+    return newVector;
+}
