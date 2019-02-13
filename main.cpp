@@ -5,6 +5,8 @@
 
 #include "sqlite_functions.h"
 #include "detect_circle.h"
+#include "sort_functions.h"
+#include "remove_background.h"
 
 #define NAME "Computer Vision"
 
@@ -18,6 +20,7 @@ int sliderGaussian = 0;
 int sliderMedian = 0;
 
 int main() {
+    srand(time(nullptr));
 
     sqlite3* db;
     int rc = sqlite3_open("../files/opencv-2.db", &db);
@@ -52,11 +55,20 @@ int main() {
 
     long long int duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 
-    SQLcreateRecord("circles", imagePath, duration, numberOfCircles, db);
+    // SQLcreateRecord("circles", imagePath, duration, numberOfCircles, db);
     std::cout << std::endl << "Detected circles: " << numberOfCircles << std::endl;
 
     cv::imshow(NAME, blurredImage);
     cv::waitKey(0);
+
+    cv::Mat basicImage = cv::imread("../img/shapes.jpg", cv::IMREAD_GRAYSCALE);
+    cv::Mat patternImage = createLightPattern(basicImage);
+    cv::Mat removedImage = removeLightWithDifference(basicImage, patternImage);
+    cv::Mat binarizedImage = binarizeImage(removedImage);
+    cv::Mat connectedImage = connectComponentsWithStats(binarizedImage);
+    cv::imshow(NAME, connectedImage);
+    cv::waitKey(0);
+
     sqlite3_close(db);
 
     return 0;
@@ -64,7 +76,7 @@ int main() {
 
 void gaussian(int, void *)
 {
-    cv::GaussianBlur(image, blurredImage, cv::Size(2*sliderGaussian+1, 2*sliderGaussian+1), sliderGaussian);
+    cv::GaussianBlur(image, blurredImage, cv::Size(2 * sliderGaussian + 1, 2 * sliderGaussian + 1), sliderGaussian);
     imshow(NAME, blurredImage);
 }
 void median(int, void *)
