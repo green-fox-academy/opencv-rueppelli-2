@@ -62,9 +62,21 @@ int main() {
     cv::waitKey(0);
 
     cv::Mat basicImage = cv::imread("../img/shapes.jpg", cv::IMREAD_GRAYSCALE);
+    cv::imshow(NAME, basicImage);
+    cv::waitKey(0);
+
     cv::Mat patternImage = createLightPattern(basicImage);
+    cv::imshow(NAME, patternImage);
+    cv::waitKey(0);
+
     cv::Mat removedImage = removeLightWithDifference(basicImage, patternImage);
+    cv::imshow(NAME, removedImage);
+    cv::waitKey(0);
+
     cv::Mat binarizedImage = binarizeImage(removedImage);
+    cv::imshow(NAME, binarizedImage);
+    cv::waitKey(0);
+
     cv::Mat connectedImage = connectComponentsWithStats(binarizedImage);
     cv::imshow(NAME, connectedImage);
     cv::waitKey(0);

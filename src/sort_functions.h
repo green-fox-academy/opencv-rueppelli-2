@@ -18,4 +18,5 @@ int* bubbleSort(int arr[], int size, int &stepCounter, int n = 1);
 
 int* shakerSort(int* array, int size, int &stepCounter, int mode = 1);
 std::vector<int> shakerSort(std::vector<int> vector, int &stepCounter, int mode = 1);
+
 #endif
