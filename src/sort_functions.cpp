@@ -128,7 +128,6 @@ std::vector<int> insertionSort(std::vector<int> inputVector, int &stepCounter, i
 
 int* quickSort(int* array, int low, int high, int &stepCounter, int mode)
 {
-    int* newArray = array;
     int i = low;
     int j = high;
     int pivot = array[(i + j) / 2];
@@ -151,10 +150,10 @@ int* quickSort(int* array, int low, int high, int &stepCounter, int mode)
             }
         }
         if (j > low) {
-            quickSort(array, low, stepCounter, j);
+            quickSort(array, low, j, stepCounter);
         }
         if (i < high) {
-            quickSort(array, i, stepCounter, high);
+            quickSort(array, i, high, stepCounter);
         }
     }
     else if (mode == 0) {
@@ -179,12 +178,11 @@ int* quickSort(int* array, int low, int high, int &stepCounter, int mode)
             quickSort(array, i, high, stepCounter, 0);
         }
     }
-    return newArray;
+    return array;
 }
 
 std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &stepCounter, int mode)
 {
-    std::vector<int> newVector = vector;
     int i = low;
     int j = high;
     int pivot = vector[(i + j) / 2];
@@ -207,10 +205,10 @@ std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &ste
             }
         }
         if (j > low) {
-            quickSort(vector, low, stepCounter, j);
+            quickSort(vector, low, j, stepCounter);
         }
         if (i < high) {
-            quickSort(vector, i, stepCounter, high);
+            quickSort(vector, i, high, stepCounter);
         }
     }
     else if (mode == 0) {
@@ -235,7 +233,7 @@ std::vector<int> quickSort(std::vector<int> &vector, int low, int high, int &ste
             quickSort(vector, i, high, stepCounter, 0);
         }
     }
-    return newVector;
+    return vector;
 }
 
 std::vector<int> bubbleSort(std::vector<int> a, int &stepCounter, int n)

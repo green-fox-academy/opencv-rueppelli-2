@@ -636,3 +636,113 @@ TEST(InsertionSort, decreasingArray)
         EXPECT_EQ(insertionSortArray[i], stdSortArray[i]);
     }
 }
+
+TEST(QuickSort, increasingVector)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> quickSortVector;
+    std::vector<int> stdSortVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        quickSortVector.push_back(randomNumber);
+        stdSortVector.push_back(randomNumber);
+    }
+
+    int counterQuick = 0;
+    quickSort(quickSortVector, 0, size - 1, counterQuick);
+
+    std::sort(stdSortVector.begin(), stdSortVector.end());
+
+    EXPECT_EQ(quickSortVector, stdSortVector);
+}
+
+TEST(QuickSort, decreasingVector)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> quickSortVector;
+    std::vector<int> stdSortVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        quickSortVector.push_back(randomNumber);
+        stdSortVector.push_back(randomNumber);
+    }
+
+    int counterQuick = 0;
+    quickSort(quickSortVector, 0, size - 1, counterQuick, 0);
+
+    std::sort(stdSortVector.begin(), stdSortVector.end());
+    std::reverse(stdSortVector.begin(), stdSortVector.end());
+
+    EXPECT_EQ(quickSortVector, stdSortVector);
+}
+
+TEST(QuickSort, increasingArray)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    int quickSortArray[size];
+    int stdSortArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        quickSortArray[i] = randomNumber;
+        stdSortArray[i] = randomNumber;
+    }
+
+    int counterInsertion = 0;
+    quickSort(quickSortArray, 0, size - 1, counterInsertion);
+
+    std::sort(stdSortArray, stdSortArray + size);
+
+    for (int i = 0; i < size; ++i){
+        EXPECT_EQ(quickSortArray[i], stdSortArray[i]);
+    }
+}
+
+TEST(QuickSort, decreasingArray)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    int quickSortArray[size];
+    int stdSortArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        quickSortArray[i] = randomNumber;
+        stdSortArray[i] = randomNumber;
+    }
+
+    int counterInsertion = 0;
+    quickSort(quickSortArray, 0, size - 1, counterInsertion, 0);
+
+    std::sort(stdSortArray, stdSortArray + size);
+    std::reverse(stdSortArray, stdSortArray + size);
+
+    for (int i = 0; i < size; ++i){
+        EXPECT_EQ(quickSortArray[i], stdSortArray[i]);
+    }
+}
