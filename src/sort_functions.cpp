@@ -328,7 +328,6 @@ int* shakerSort(int* array, int size, int &stepCounter, int mode)
 
 std::vector<int> shakerSort(std::vector<int> vector, int &stepCounter, int mode)
 {
-    std::vector<int> newVector = vector;
     int size = (int)vector.size();
 
     int i;
@@ -354,7 +353,6 @@ std::vector<int> shakerSort(std::vector<int> vector, int &stepCounter, int mode)
         }
     } else if (mode == 0) {
         for (k = 0; k < size;) {
-
             for (i = 0; i < size - 1; i++) {
                 if (vector[i] < vector[i + 1]) {
                     std::swap(vector[i], vector[i + 1]);
@@ -371,5 +369,5 @@ std::vector<int> shakerSort(std::vector<int> vector, int &stepCounter, int mode)
             k++;
         }
     }
-    return newVector;
+    return vector;
 }
