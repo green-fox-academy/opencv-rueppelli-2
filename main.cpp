@@ -7,6 +7,7 @@
 #include "detect_circle.h"
 #include "sort_functions.h"
 #include "remove_background.h"
+#include "histogram.h"
 
 #define NAME "Computer Vision"
 
@@ -20,6 +21,7 @@ int sliderGaussian = 0;
 int sliderMedian = 0;
 
 int main() {
+
     srand(time(nullptr));
 
     sqlite3* db;
@@ -67,6 +69,12 @@ int main() {
     cv::Mat binarizedImage = binarizeImage(removedImage);
     cv::Mat connectedImage = connectComponentsWithStats(binarizedImage);
     cv::imshow(NAME, connectedImage);
+    cv::waitKey(0);
+
+    cv::Mat originalImage = cv::imread("../img/limit.jpg", cv::IMREAD_COLOR);
+    cv::Mat drawHistogram = histogram(originalImage);
+    cv::imshow("Histogram", drawHistogram );
+    cv::moveWindow("Histogram", 0, 50);
     cv::waitKey(0);
 
     sqlite3_close(db);
