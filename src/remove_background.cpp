@@ -44,7 +44,7 @@ cv::Mat connectComponents(cv::Mat image)
     cv::Mat labels;
 
     int nLabels = cv::connectedComponents(image, labels);
-    std::cout << nLabels << " objects detected!" << std::endl;
+    std::cout << nLabels - 1 << " objects detected!" << std::endl;
 
     newImage = cv::Mat::zeros(image.rows, image.cols, CV_8UC3);
 
@@ -70,7 +70,7 @@ cv::Mat connectComponentsWithStats(cv::Mat image)
     cv::Mat centroids;
 
     int nLabels = cv::connectedComponentsWithStats(image, labels, stats, centroids);
-    std::cout << nLabels << " objects detected!" << std::endl;
+    std::cout << nLabels - 1 << " objects detected!" << std::endl;
 
     newImage = cv::Mat::zeros(image.rows, image.cols, CV_8UC3);
 
