@@ -526,3 +526,113 @@ TEST(Selectionsort, decreaseArray)
         EXPECT_EQ(newSelectionSort[j], sortFunctionArray[j]);
     }
 }
+
+TEST(InsertionSort, increasingVector)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> insertionSortVector;
+    std::vector<int> stdSortVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        insertionSortVector.push_back(randomNumber);
+        stdSortVector.push_back(randomNumber);
+    }
+
+    int counterInsertion = 0;
+    insertionSortVector = insertionSort(insertionSortVector, counterInsertion);
+
+    std::sort(stdSortVector.begin(), stdSortVector.end());
+
+    EXPECT_EQ(insertionSortVector, stdSortVector);
+}
+
+TEST(InsertionSort, decreasingVector)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> insertionSortVector;
+    std::vector<int> stdSortVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        insertionSortVector.push_back(randomNumber);
+        stdSortVector.push_back(randomNumber);
+    }
+
+    int counterInsertion = 0;
+    insertionSortVector = insertionSort(insertionSortVector, counterInsertion, 0);
+
+    std::sort(stdSortVector.begin(), stdSortVector.end());
+    std::reverse(stdSortVector.begin(), stdSortVector.end());
+
+    EXPECT_EQ(insertionSortVector, stdSortVector);
+}
+
+TEST(InsertionSort, increasingArray)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    int insertionSortArray[size];
+    int stdSortArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        insertionSortArray[i] = randomNumber;
+        stdSortArray[i] = randomNumber;
+    }
+
+    int counterInsertion = 0;
+    insertionSort(insertionSortArray, size, counterInsertion);
+
+    std::sort(stdSortArray, stdSortArray + size);
+
+    for (int i = 0; i < size; ++i){
+        EXPECT_EQ(insertionSortArray[i], stdSortArray[i]);
+    }
+}
+
+TEST(InsertionSort, decreasingArray)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    int insertionSortArray[size];
+    int stdSortArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        insertionSortArray[i] = randomNumber;
+        stdSortArray[i] = randomNumber;
+    }
+
+    int counterInsertion = 0;
+    insertionSort(insertionSortArray, size, counterInsertion, 0);
+
+    std::sort(stdSortArray, stdSortArray + size);
+    std::reverse(stdSortArray, stdSortArray + size);
+
+    for (int i = 0; i < size; ++i){
+        EXPECT_EQ(insertionSortArray[i], stdSortArray[i]);
+    }
+}
