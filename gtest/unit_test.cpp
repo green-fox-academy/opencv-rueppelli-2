@@ -28,40 +28,40 @@ TEST(DetectCircles, overlayCircles)
 
 TEST(FastestSortingStep, increasingIntArray)
 {
-   srand(time(nullptr));
+    srand(time(nullptr));
 
-   int size = (rand() % 1000) + 1;
+    int size = (rand() % 1000) + 1;
 
-   int selectionSortArray[size];
-   int insertionSortArray[size];
-   int bubbleSortArray[size];
-   int quickSortArray[size];
+    int selectionSortArray[size];
+    int insertionSortArray[size];
+    int bubbleSortArray[size];
+    int quickSortArray[size];
 
-   int randomNumber = 0;
+    int randomNumber = 0;
 
-   for (int i = 0; i < size; ++i) {
-       randomNumber = (rand() % 1000) + 1;
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
 
-       selectionSortArray[i] = randomNumber;
-       insertionSortArray[i] = randomNumber;
-       bubbleSortArray[i] = randomNumber;
-       quickSortArray[i] = randomNumber;
-   }
+        selectionSortArray[i] = randomNumber;
+        insertionSortArray[i] = randomNumber;
+        bubbleSortArray[i] = randomNumber;
+        quickSortArray[i] = randomNumber;
+    }
 
-   int counterSelection = 0;
-   int counterInsertion = 0;
-   int counterBubble = 0;
-   int counterQuick = 0;
+    int counterSelection = 0;
+    int counterInsertion = 0;
+    int counterBubble = 0;
+    int counterQuick = 0;
 
-   int* newSelectionSort = selectionSort(selectionSortArray, size, counterSelection);
-   int* newInsertionSort = insertionSort(insertionSortArray, size, counterInsertion);
-   int* newBubbleSort = bubbleSort(bubbleSortArray, size, counterBubble);
+    int* newSelectionSort = selectionSort(selectionSortArray, size, counterSelection);
+    int* newInsertionSort = insertionSort(insertionSortArray, size, counterInsertion);
+    int* newBubbleSort = bubbleSort(bubbleSortArray, size, counterBubble);
 
-   int low = quickSortArray[0];
-   int high = quickSortArray[size-1];
-   int* newQuickSort = quickSort(quickSortArray, low, high, counterQuick);
+    int low = quickSortArray[0];
+    int high = quickSortArray[size-1];
+    int* newQuickSort = quickSort(quickSortArray, low, high, counterQuick);
 
-   ASSERT_LT(counterQuick, counterInsertion);
+    ASSERT_LT(counterQuick, counterInsertion);
 }
 
 TEST(FastestSortingStep, decrasingIntArray)
@@ -290,4 +290,349 @@ TEST(FastestSortingTime, byTimeIntVector)
     timeQuick = (tq1-tq0)/cv::getTickFrequency();
 
     ASSERT_LT(timeQuick, timeInsertion);
+}
+
+TEST(Bubblesort, increaseVector)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> bubbleSortVector;
+    std::vector<int> sortFunctionVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 100) + 1;
+        bubbleSortVector.push_back(randomNumber);
+    }
+    int counterBubble = 0;
+
+    std::vector<int> newBubbleSort = bubbleSort( bubbleSortVector, counterBubble, 1);
+
+    std::sort(bubbleSortVector.begin(), bubbleSortVector.end());
+    for (auto x : bubbleSortVector) {
+        sortFunctionVector.push_back(x);
+    }
+
+    EXPECT_EQ(newBubbleSort, sortFunctionVector);
+}
+
+TEST(Bubblesort, decreaseVector)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> bubbleSortVector;
+    std::vector<int> sortFunctionVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+        bubbleSortVector.push_back(randomNumber);
+    }
+    int counterBubble = 0;
+
+    std::vector<int> newBubbleSort = bubbleSort( bubbleSortVector, counterBubble, 0);
+
+    std::sort(bubbleSortVector.rbegin(), bubbleSortVector.rend());
+
+    for (auto x : bubbleSortVector) {
+        sortFunctionVector.push_back(x);
+    }
+
+    EXPECT_EQ(newBubbleSort, sortFunctionVector);
+}
+
+TEST(Bubblesort, increaseArray)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    int bubbleSortArray[size];
+    int bubbleSortArrayCopy[size];
+    int sortFunctionArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+        bubbleSortArray[i] = randomNumber;
+        bubbleSortArrayCopy[i] = randomNumber;
+    }
+    int counterBubble = 0;
+
+    int* newBubbleSort = bubbleSort(bubbleSortArray, size, counterBubble, 1);
+
+    int n = sizeof(bubbleSortArrayCopy)/sizeof(bubbleSortArrayCopy[0]);
+
+    std::sort(bubbleSortArrayCopy, bubbleSortArrayCopy+n);
+
+    for (int i = 0; i < n; ++i){
+        sortFunctionArray[i] = bubbleSortArrayCopy[i];
+    }
+    for (int j = 0; j < size; ++j){
+        EXPECT_EQ(newBubbleSort[j], sortFunctionArray[j]);
+    }
+}
+
+TEST(Bubblesort, decreaseArray)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    int bubbleSortArray[size];
+    int bubbleSortArrayCopy[size];
+    int sortFunctionArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+        bubbleSortArray[i] = randomNumber;
+        bubbleSortArrayCopy[i] = randomNumber;
+    }
+    int counterBubble = 0;
+
+    int* newBubbleSort = bubbleSort(bubbleSortArray, size, counterBubble, 0);
+
+    int n = sizeof(bubbleSortArrayCopy)/sizeof(bubbleSortArrayCopy[0]);
+
+    std::sort(bubbleSortArrayCopy, bubbleSortArrayCopy+n);
+
+    for (int i = 0; i < size; ++i){
+        sortFunctionArray[size-1-i] = bubbleSortArrayCopy[i];
+    }
+
+    for (int j = 0; j < size; ++j){
+        EXPECT_EQ(newBubbleSort[j], sortFunctionArray[j]);
+    }
+}
+
+TEST(Selectionsort, increaseVector)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> selectionSortVector;
+    std::vector<int> sortFunctionVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 100) + 1;
+        selectionSortVector.push_back(randomNumber);
+    }
+    int counterSelection = 0;
+
+    std::vector<int> newSelectionSort = selectionSort( selectionSortVector, counterSelection, 1);
+
+    std::sort(selectionSortVector.begin(), selectionSortVector.end());
+    for (auto x : selectionSortVector) {
+        sortFunctionVector.push_back(x);
+    }
+
+    EXPECT_EQ(newSelectionSort, sortFunctionVector);
+}
+
+TEST(Selectionsort, decreaseVector)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> selectionSortVector;
+    std::vector<int> sortFunctionVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+        selectionSortVector.push_back(randomNumber);
+    }
+    int counterSelection = 0;
+
+    std::vector<int> newSelectionSort = selectionSort( selectionSortVector, counterSelection, 0);
+
+    std::sort(selectionSortVector.rbegin(), selectionSortVector.rend());
+
+    for (auto x : selectionSortVector) {
+        sortFunctionVector.push_back(x);
+    }
+
+    EXPECT_EQ(newSelectionSort, sortFunctionVector);
+}
+
+TEST(Selectionsort, increaseArray)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    int selectionSortArray[size];
+    int selectionSortArrayCopy[size];
+    int sortFunctionArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+        selectionSortArray[i] = randomNumber;
+        selectionSortArrayCopy[i] = randomNumber;
+    }
+    int counterSelection = 0;
+
+    int* newSelectionSort = selectionSort(selectionSortArray, size, counterSelection, 1);
+
+    int n = sizeof(selectionSortArrayCopy)/sizeof(selectionSortArrayCopy[0]);
+
+    std::sort(selectionSortArrayCopy, selectionSortArrayCopy+n);
+
+    for (int i = 0; i < n; ++i){
+        sortFunctionArray[i] = selectionSortArrayCopy[i];
+    }
+    for (int j = 0; j < size; ++j){
+        EXPECT_EQ(newSelectionSort[j], sortFunctionArray[j]);
+    }
+}
+
+TEST(Selectionsort, decreaseArray)
+{
+    srand(time(nullptr));
+    int size = (rand() % 1000) + 1;
+
+    int selectionSortArray[size];
+    int selectionSortArrayCopy[size];
+    int sortFunctionArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+        selectionSortArray[i] = randomNumber;
+        selectionSortArrayCopy[i] = randomNumber;
+    }
+    int counterSelection = 0;
+
+    int* newSelectionSort = selectionSort(selectionSortArray, size, counterSelection, 0);
+
+    int n = sizeof(selectionSortArrayCopy)/sizeof(selectionSortArrayCopy[0]);
+
+    std::sort(selectionSortArrayCopy, selectionSortArrayCopy+n);
+
+    for (int i = 0; i < size; ++i){
+        sortFunctionArray[size-1-i] = selectionSortArrayCopy[i];
+    }
+    for (int j = 0; j < size; ++j){
+        EXPECT_EQ(newSelectionSort[j], sortFunctionArray[j]);
+    }
+}
+
+TEST(InsertionSort, increasingVector)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> insertionSortVector;
+    std::vector<int> stdSortVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        insertionSortVector.push_back(randomNumber);
+        stdSortVector.push_back(randomNumber);
+    }
+
+    int counterInsertion = 0;
+    insertionSortVector = insertionSort(insertionSortVector, counterInsertion);
+
+    std::sort(stdSortVector.begin(), stdSortVector.end());
+
+    EXPECT_EQ(insertionSortVector, stdSortVector);
+}
+
+TEST(InsertionSort, decreasingVector)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> insertionSortVector;
+    std::vector<int> stdSortVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        insertionSortVector.push_back(randomNumber);
+        stdSortVector.push_back(randomNumber);
+    }
+
+    int counterInsertion = 0;
+    insertionSortVector = insertionSort(insertionSortVector, counterInsertion, 0);
+
+    std::sort(stdSortVector.begin(), stdSortVector.end());
+    std::reverse(stdSortVector.begin(), stdSortVector.end());
+
+    EXPECT_EQ(insertionSortVector, stdSortVector);
+}
+
+TEST(InsertionSort, increasingArray)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    int insertionSortArray[size];
+    int stdSortArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        insertionSortArray[i] = randomNumber;
+        stdSortArray[i] = randomNumber;
+    }
+
+    int counterInsertion = 0;
+    insertionSort(insertionSortArray, size, counterInsertion);
+
+    std::sort(stdSortArray, stdSortArray + size);
+
+    for (int i = 0; i < size; ++i){
+        EXPECT_EQ(insertionSortArray[i], stdSortArray[i]);
+    }
+}
+
+TEST(InsertionSort, decreasingArray)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    int insertionSortArray[size];
+    int stdSortArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        insertionSortArray[i] = randomNumber;
+        stdSortArray[i] = randomNumber;
+    }
+
+    int counterInsertion = 0;
+    insertionSort(insertionSortArray, size, counterInsertion, 0);
+
+    std::sort(stdSortArray, stdSortArray + size);
+    std::reverse(stdSortArray, stdSortArray + size);
+
+    for (int i = 0; i < size; ++i){
+        EXPECT_EQ(insertionSortArray[i], stdSortArray[i]);
+    }
 }
