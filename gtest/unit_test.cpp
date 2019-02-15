@@ -746,3 +746,113 @@ TEST(QuickSort, decreasingArray)
         EXPECT_EQ(quickSortArray[i], stdSortArray[i]);
     }
 }
+
+TEST(ShakerSort, increasingVector)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> shakerSortVector;
+    std::vector<int> stdSortVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        shakerSortVector.push_back(randomNumber);
+        stdSortVector.push_back(randomNumber);
+    }
+
+    int counterShaker = 0;
+    shakerSortVector = shakerSort(shakerSortVector, counterShaker);
+
+    std::sort(stdSortVector.begin(), stdSortVector.end());
+
+    EXPECT_EQ(shakerSortVector, stdSortVector);
+}
+
+TEST(ShakerSort, decreasingVector)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    std::vector<int> shakerSortVector;
+    std::vector<int> stdSortVector;
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        shakerSortVector.push_back(randomNumber);
+        stdSortVector.push_back(randomNumber);
+    }
+
+    int counterShaker = 0;
+    shakerSortVector = shakerSort(shakerSortVector, counterShaker, 0);
+
+    std::sort(stdSortVector.begin(), stdSortVector.end());
+    std::reverse(stdSortVector.begin(), stdSortVector.end());
+
+    EXPECT_EQ(shakerSortVector, stdSortVector);
+}
+
+TEST(ShakerSort, increasingArray)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    int shakerSortArray[size];
+    int stdSortArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        shakerSortArray[i] = randomNumber;
+        stdSortArray[i] = randomNumber;
+    }
+
+    int counterShaker = 0;
+    shakerSort(shakerSortArray, size, counterShaker);
+
+    std::sort(stdSortArray, stdSortArray + size);
+
+    for (int i = 0; i < size; ++i){
+        EXPECT_EQ(shakerSortArray[i], stdSortArray[i]);
+    }
+}
+
+TEST(ShakerSort, decreasingArray)
+{
+    srand(time(nullptr));
+
+    int size = (rand() % 1000) + 1;
+
+    int shakerSortArray[size];
+    int stdSortArray[size];
+
+    int randomNumber = 0;
+
+    for (int i = 0; i < size; ++i) {
+        randomNumber = (rand() % 1000) + 1;
+
+        shakerSortArray[i] = randomNumber;
+        stdSortArray[i] = randomNumber;
+    }
+
+    int counterShaker = 0;
+    shakerSort(shakerSortArray, size, counterShaker, 0);
+
+    std::sort(stdSortArray, stdSortArray + size);
+    std::reverse(stdSortArray, stdSortArray + size);
+
+    for (int i = 0; i < size; ++i){
+        EXPECT_EQ(shakerSortArray[i], stdSortArray[i]);
+    }
+}
