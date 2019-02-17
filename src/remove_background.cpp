@@ -103,3 +103,11 @@ cv::Mat connectComponentsWithStats(cv::Mat image)
     }
     return newImage;
 }
+
+cv::Mat binarizeImageOtsu(cv::Mat image)
+{
+    cv::Mat newImage;
+    cv::threshold(image, newImage, 0, 255, cv::THRESH_OTSU);
+
+    return newImage;
+}

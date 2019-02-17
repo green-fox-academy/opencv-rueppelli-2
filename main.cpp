@@ -75,7 +75,7 @@ int main() {
     cv::imshow(NAME, removedImage);
     cv::waitKey(0);
 
-    cv::Mat binarizedImage = binarizeImage(removedImage);
+    cv::Mat binarizedImage = binarizeImageOtsu(removedImage); 
     cv::imshow(NAME, binarizedImage);
     cv::waitKey(0);
 
