@@ -89,6 +89,12 @@ int main() {
     cv::moveWindow("Histogram", 0, 50);
     cv::waitKey(0);
 
+    cv::Mat normalizeImage = normalizeColoring(originalImage);
+    cv::imshow("Normalized", normalizeImage);
+    drawHistogram = histogram(normalizeImage);
+    cv::imshow("HistogramNormalized", drawHistogram);
+    cv::waitKey(0);
+
     sqlite3_close(db);
 
     return 0;
