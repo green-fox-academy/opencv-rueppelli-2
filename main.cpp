@@ -95,6 +95,10 @@ int main() {
     cv::imshow("HistogramNormalized", drawHistogram);
     cv::waitKey(0);
 
+    cv::Mat sharpenImage = sharpen(originalImage);
+    cv::imshow("SharpenImage", sharpenImage);
+    cv::waitKey(0);
+
     sqlite3_close(db);
 
     return 0;
