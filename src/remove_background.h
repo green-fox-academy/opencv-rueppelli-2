@@ -18,4 +18,6 @@ cv::Mat binarizeImageOtsu(cv::Mat image);
 cv::Mat connectComponents(cv::Mat image);
 cv::Mat connectComponentsWithStats(cv::Mat image);
 
+cv::Mat sharpen (cv::Mat image);
+
 #endif

@@ -118,3 +118,12 @@ cv::Mat binarizeImageOtsu(cv::Mat image)
     else
         return ~newImage;
 }
+
+cv::Mat sharpen(cv::Mat image)
+{
+    cv::Mat result;
+    cv::Mat kernel = (cv::Mat_<char>(3,3) << 0, -1, 0, -1, 5, -1, 0, -1, 0);
+    cv::filter2D(image, result, image.depth(), kernel);
+
+    return result;
+}
