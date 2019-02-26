@@ -6,6 +6,6 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 
-int detectCircle(cv::Mat &image);
+int detectCircle(cv::Mat &image, cv::Mat &imageDestination);
 
 #endif
