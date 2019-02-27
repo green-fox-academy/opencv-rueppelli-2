@@ -36,8 +36,6 @@ int main(int argc, char* argv[]) {
 
     sqlite3_open(argv[1], &db);
 
-    //std::string imagePath("../img/balls11.jpg");
-
     image = cv::imread(argv[2], cv::IMREAD_GRAYSCALE);
 
     if(!image.data) {
@@ -58,6 +56,7 @@ int main(int argc, char* argv[]) {
     long long int duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 
     //SQLcreateRecord("circles", argv[2], duration, numberOfCircles, db);
+
     std::cout << std::endl << "Detected circles: " << numberOfCircles << std::endl;
 
     cv::imshow(NAME, blurredImage);
@@ -75,7 +74,7 @@ int main(int argc, char* argv[]) {
     cv::imshow(NAME, removedImage);
     cv::waitKey(0);
 
-    cv::Mat binarizedImage = binarizeImageOtsu(removedImage); 
+    cv::Mat binarizedImage = binarizeImageOtsu(removedImage);
     cv::imshow(NAME, binarizedImage);
     cv::waitKey(0);
 
