@@ -20,12 +20,12 @@ cv::Mat blurredImage;
 int sliderGaussian = 0;
 int sliderMedian = 0;
 
-int main() {
+int main(int argc, char* argv[]) {
 
     srand(time(nullptr));
 
     sqlite3* db;
-    int rc = sqlite3_open("../files/opencv-2.db", &db);
+    int rc = sqlite3_open(argv[1], &db);
 
     if(rc) {
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
@@ -34,11 +34,11 @@ int main() {
         fprintf(stderr, "Opened database successfully\n");
     }
 
-    sqlite3_open("../files/opencv-2.db", &db);
+    sqlite3_open(argv[1], &db);
 
-    std::string imagePath("../img/balls11.jpg");
+    //std::string imagePath("../img/balls11.jpg");
 
-    image = cv::imread(imagePath, cv::IMREAD_GRAYSCALE);
+    image = cv::imread(argv[2], cv::IMREAD_GRAYSCALE);
 
     if(!image.data) {
         std::cout << "Sorry baby, I can't find the image." << std::endl ;
@@ -57,13 +57,13 @@ int main() {
 
     long long int duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 
-    // SQLcreateRecord("circles", imagePath, duration, numberOfCircles, db);
+    //SQLcreateRecord("circles", argv[2], duration, numberOfCircles, db);
     std::cout << std::endl << "Detected circles: " << numberOfCircles << std::endl;
 
     cv::imshow(NAME, blurredImage);
     cv::waitKey(0);
 
-    cv::Mat basicImage = cv::imread("../img/shapes.jpg", cv::IMREAD_GRAYSCALE);
+    cv::Mat basicImage = cv::imread(argv[3], cv::IMREAD_GRAYSCALE);
     cv::imshow(NAME, basicImage);
     cv::waitKey(0);
 
@@ -83,7 +83,7 @@ int main() {
     cv::imshow(NAME, connectedImage);
     cv::waitKey(0);
 
-    cv::Mat originalImage = cv::imread("../img/limit.jpg", cv::IMREAD_COLOR);
+    cv::Mat originalImage = cv::imread(argv[4], cv::IMREAD_COLOR);
     cv::Mat drawHistogram = histogram(originalImage);
     cv::imshow("Histogram", drawHistogram );
     cv::moveWindow("Histogram", 0, 50);
