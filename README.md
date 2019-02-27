@@ -58,11 +58,21 @@
 <li> Click *Browse Build* and define then browse a folder to locate your *Open CV library*. </li>
 <li> Click *Configure* and specify the generator for this project, select *MinGW Makefiles*, tick *Use default native compilers*. </li>
 <li> After the configure, select *CMAKE* from the red list, open the sub-list, choose *CMAKE_BUILD_TYPE*, set it to *Release*  </li>
-<li> Select *ENAMBLE* from the red list, open the sub-list, untick *ENABLE PRECOMPILED HEADERS* </li>
+<li> Select *ENABLE* from the red list, open the sub-list, untick *ENABLE PRECOMPILED HEADERS* </li>
 <li> Select *WITH* from the red list, open the sub-list, untick *WITH IPP* and *WITH MSMF* that case if they were ticked. </li>
 <li> Click *Configure* again to set the changes. </li>
 <li> Click *Generate* after all. </li>
-
+<li> Open *Command Prompt* and let's navigate to the folder you built directory before, type *"mingw32-make"* and press enter.</li>
+<li> The building time can be up to 1 hour. As our computer finished this process, type *"mingw32-make install"* and press enter. </li>
+<li> After we installed the *mingw32-make*, we shold find in the main folder a new folder called *install*. </li>
+<li> In this *install* folder let's navigate to the *./install/x64/mingw/lib* and set it as an environment variable called *OPENCV_DIR*.</li>
+<li> Open a new *Command Prompt* as administrator, type *setx -m OPENCV_DIR* paste *./install/x64/mingw/lib* and press enter. </li>
+<li> Open *JetBrainsCLion*, set up *File* tab, *Settings*, set *Build, Execution, Deployment*, choose *Toolchains*, set up *MinGW* at the *Environment*, add the folder of the *MinGW* </li>
+<li> Install the SQLite3 to the Program Files (x86) by default. </li>
+<li> Build this with folder with the CMake too, click and browse the source folder and locate the SQLite3 folder </li>
+<li> Same as before, locate the *./sqlite3/lib/cmake* folder and set it as an environment variable called *SQLITE3_DIR* </li>
+<li> Same as before, locate the *./sqlite3/include* folder and set it as an environment variable called *SQlite3_inc* </li>
+<li> Same as before, locate the *googletest* folder and set it as an environment variable called *PATH_TO_GOOGLETEST* </li>
 <li> Copy all the *DLL* files to the *cmake-build-debug* folder and the *gtest* folder found in *cmake-build-debug*. </li>
 
 
