@@ -51,18 +51,16 @@ int main() {
 
     cv::waitKey(0);
 
-    cv::Mat imageDestination = cv::Mat::ones(image.size(), image.type());
-
     std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-    int numberOfCircles = detectCircle(image, imageDestination);
+    int numberOfCircles = detectCircle(blurredImage);
     std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 
     long long int duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 
-    // SQLcreateRecord("circles", imagePath, duration, numberOfCircles, db);
+    //SQLcreateRecord("circles", imagePath, duration, numberOfCircles, db);
     std::cout << std::endl << "Detected circles: " << numberOfCircles << std::endl;
 
-    cv::imshow(NAME, imageDestination);
+    cv::imshow(NAME, blurredImage);
     cv::waitKey(0);
 
     cv::Mat basicImage = cv::imread("../img/shapes.jpg", cv::IMREAD_GRAYSCALE);

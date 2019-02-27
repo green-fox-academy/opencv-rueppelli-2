@@ -6,6 +6,8 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 
-int detectCircle(cv::Mat &image, cv::Mat &imageDestination);
+#include "histogram.h"
+
+int detectCircle(cv::Mat &image);
 
 #endif
