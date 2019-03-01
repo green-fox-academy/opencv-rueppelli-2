@@ -83,8 +83,12 @@ int main(int argc, char* argv[]) {
     cv::waitKey(0);
 
     cv::Mat originalImage = cv::imread(argv[4], cv::IMREAD_COLOR);
+    cv::imshow("Original image", originalImage);
+    cv::moveWindow("Original image", 400, 50);
+
+    cv::namedWindow("Histogram", cv::WINDOW_AUTOSIZE);
     cv::Mat drawHistogram = histogram(originalImage);
-    cv::imshow("Histogram", drawHistogram );
+    cv::imshow("Histogram", drawHistogram);
     cv::moveWindow("Histogram", 0, 50);
     cv::waitKey(0);
 
@@ -94,7 +98,7 @@ int main(int argc, char* argv[]) {
     cv::imshow("HistogramNormalized", drawHistogram);
     cv::waitKey(0);
 
-    cv::Mat sharpenImage = sharpen(originalImage);
+    cv::Mat sharpenImage = sharpen(normalizeImage);
     cv::imshow("SharpenImage", sharpenImage);
     cv::waitKey(0);
 
