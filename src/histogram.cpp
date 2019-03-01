@@ -33,16 +33,12 @@ cv::Mat histogram(cv::Mat image)
               cv::Point(bin_w*(i), hist_h - cvRound(b_hist.at<float>(i))),
               cv::Scalar(255, 0, 0), 2, 8, 0);
         line(histImage, cv::Point(bin_w*(i-1), hist_h - cvRound(g_hist.at<float>(i-1))),
-              cv::Point(bin_w*(i), hist_h - cvRound(g_hist.at<float>(i)) ),
+              cv::Point(bin_w*(i), hist_h - cvRound(g_hist.at<float>(i))),
               cv::Scalar(0, 255, 0), 2, 8, 0);
-        line(histImage, cv::Point( bin_w*(i-1), hist_h - cvRound(r_hist.at<float>(i-1))),
+        line(histImage, cv::Point(bin_w*(i-1), hist_h - cvRound(r_hist.at<float>(i-1))),
               cv::Point(bin_w*(i), hist_h - cvRound(r_hist.at<float>(i))),
               cv::Scalar(0, 0, 255), 2, 8, 0);
     }
-    cv::namedWindow("Histogram", cv::WINDOW_AUTOSIZE);
-    cv::imshow("Original image", image);
-    cv::moveWindow("Original image", 400, 50);
-
     return histImage;
 }
 

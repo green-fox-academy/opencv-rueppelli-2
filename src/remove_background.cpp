@@ -94,7 +94,7 @@ cv::Mat connectComponentsWithStats(cv::Mat image)
 
     for (int j = 0; j < sortedAreas.size(); ++j) {
         for (int i = 1; i < nLabels; i++ ) {
-            if (stats.at<int>(i, cv::CC_STAT_AREA) == sortedAreas[j]){
+            if (stats.at<int>(i, cv::CC_STAT_AREA) == sortedAreas[j]) {
                 std::string biggest = std::to_string(j + 1);
                 cv::putText(newImage, biggest, cv::Point(centroids.at<cv::Point2d>(i)),
                             cv::FONT_HERSHEY_SIMPLEX, 0.4, cv::Scalar(0,0,0), 1, 8, false);

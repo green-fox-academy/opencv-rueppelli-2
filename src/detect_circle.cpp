@@ -7,7 +7,7 @@ int detectCircle(cv::Mat &image)
 
         cv::Mat image2 = image.clone();
 
-        //GaussianBlur(image, image, cv::Size(5, 5), 0, 0);
+        GaussianBlur(image, image, cv::Size(5, 5), 0, 0);
 
         std::vector<cv::Vec3f> circles;
         HoughCircles(image, circles, cv::HOUGH_GRADIENT, 1, image.rows/4, 50, 130, 0, 0);
@@ -40,7 +40,6 @@ int detectCircle(cv::Mat &image)
 
             numberOfCircles++;
         }
-        cv::imshow("masked", imageDestination);
-        cv::waitKey(0);
+        cv::imshow("Masked", imageDestination);
         return numberOfCircles;
 }
