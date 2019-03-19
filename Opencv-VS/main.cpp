@@ -9,7 +9,7 @@
 #include "img_filtering.h"
 #include "img_histogram.h"
 
-#define NAME "Computer Vision"
+#define WINDOW_NAME "Computer Vision"
 
 void gaussian(int, void *);
 void median(int, void *);
@@ -43,8 +43,8 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    namedWindow(NAME, cv::WINDOW_AUTOSIZE);
-    cv::imshow(NAME, image);
+    namedWindow(WINDOW_NAME, cv::WINDOW_AUTOSIZE);
+    cv::imshow(WINDOW_NAME, image);
     trackbar();
 
     cv::waitKey(0);
@@ -59,27 +59,27 @@ int main(int argc, char* argv[]) {
 
     std::cout << std::endl << "Detected circles: " << numberOfCircles << std::endl;
 
-    cv::imshow(NAME, blurredImage);
+    cv::imshow(WINDOW_NAME, blurredImage);
     cv::waitKey(0);
 
     cv::Mat basicImage = cv::imread(argv[3], cv::IMREAD_GRAYSCALE);
-    cv::imshow(NAME, basicImage);
+    cv::imshow(WINDOW_NAME, basicImage);
     cv::waitKey(0);
 
     cv::Mat patternImage = createLightPattern(basicImage);
-    cv::imshow(NAME, patternImage);
+    cv::imshow(WINDOW_NAME, patternImage);
     cv::waitKey(0);
 
     cv::Mat removedImage = removeLightWithDifference(basicImage, patternImage);
-    cv::imshow(NAME, removedImage);
+    cv::imshow(WINDOW_NAME, removedImage);
     cv::waitKey(0);
 
     cv::Mat binarizedImage = binarizeImage(removedImage);
-    cv::imshow(NAME, binarizedImage);
+    cv::imshow(WINDOW_NAME, binarizedImage);
     cv::waitKey(0);
 
     cv::Mat connectedImage = connectComponentsWithStats(binarizedImage);
-    cv::imshow(NAME, connectedImage);
+    cv::imshow(WINDOW_NAME, connectedImage);
     cv::waitKey(0);
 
     cv::Mat originalImage = cv::imread(argv[4], cv::IMREAD_COLOR);
@@ -110,18 +110,18 @@ int main(int argc, char* argv[]) {
 void gaussian(int, void *)
 {
     cv::GaussianBlur(image, blurredImage, cv::Size(2 * sliderGaussian + 1, 2 * sliderGaussian + 1), sliderGaussian);
-    imshow(NAME, blurredImage);
+    imshow(WINDOW_NAME, blurredImage);
 }
 void median(int, void *)
 {
     cv::medianBlur(image, blurredImage, 2 * sliderMedian + 1);
-    imshow(NAME, blurredImage);
+    imshow(WINDOW_NAME, blurredImage);
 }
 
 void trackbar()
 {
-    cv::createTrackbar("Gaussian Blur", NAME, &sliderGaussian, 25, gaussian);
+    cv::createTrackbar("Gaussian Blur", WINDOW_NAME, &sliderGaussian, 25, gaussian);
     gaussian(1, nullptr);
-    cv::createTrackbar("Median Blur", NAME, &sliderMedian, 25, median);
+    cv::createTrackbar("Median Blur", WINDOW_NAME, &sliderMedian, 25, median);
     median(1, nullptr);
 }
