@@ -4,10 +4,10 @@
 #include <opencv2/highgui.hpp>
 
 #include "sqlite_functions.h"
-#include "detect_circle.h"
+#include "img_detection.h"
 #include "sort_functions.h"
-#include "remove_background.h"
-#include "histogram.h"
+#include "img_filtering.h"
+#include "img_histogram.h"
 
 #define NAME "Computer Vision"
 
@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
     cv::imshow(NAME, removedImage);
     cv::waitKey(0);
 
-    cv::Mat binarizedImage = binarizeImageOtsu(removedImage);
+    cv::Mat binarizedImage = binarizeImage(removedImage);
     cv::imshow(NAME, binarizedImage);
     cv::waitKey(0);
 
