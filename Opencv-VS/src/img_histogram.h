@@ -7,6 +7,5 @@
 #include <opencv2/highgui.hpp>
 
 cv::Mat histogram(cv::Mat input);
-cv::Mat normalizeColoring(cv::Mat img);
 
 #endif

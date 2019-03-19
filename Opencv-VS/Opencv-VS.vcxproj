@@ -20,16 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\detect_circle.cpp" />
-    <ClCompile Include="src\histogram.cpp" />
-    <ClCompile Include="src\remove_background.cpp" />
+    <ClCompile Include="src\img_detection.cpp" />
+    <ClCompile Include="src\img_histogram.cpp" />
+    <ClCompile Include="src\img_filtering.cpp" />
     <ClCompile Include="src\sort_functions.cpp" />
     <ClCompile Include="src\sqlite_functions.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\detect_circle.h" />
-    <ClInclude Include="src\histogram.h" />
-    <ClInclude Include="src\remove_background.h" />
+    <ClInclude Include="src\img_detection.h" />
+    <ClInclude Include="src\img_histogram.h" />
+    <ClInclude Include="src\img_filtering.h" />
     <ClInclude Include="src\sort_functions.h" />
     <ClInclude Include="src\sqlite_functions.h" />
   </ItemGroup>

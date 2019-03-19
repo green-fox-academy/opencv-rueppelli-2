@@ -1,4 +1,4 @@
-#include "histogram.h"
+#include "img_histogram.h"
 
 
 cv::Mat histogram(cv::Mat image)
@@ -42,17 +42,3 @@ cv::Mat histogram(cv::Mat image)
     return histImage;
 }
 
-cv::Mat normalizeColoring(cv::Mat img)
-{
-    cv::Mat result;
-    cv::Mat ycrcb;
-    cvtColor(img, ycrcb, cv::COLOR_BGR2YCrCb);
-
-    std::vector<cv::Mat> channels;
-    split(ycrcb, channels);
-    equalizeHist(channels[0], channels[0]);
-    merge(channels, ycrcb);
-    cvtColor(ycrcb, result, cv::COLOR_YCrCb2BGR);
-
-    return result;
-}
