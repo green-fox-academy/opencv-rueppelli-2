@@ -55,4 +55,3 @@ In Visual Studio, on the property pages of your project set the following proper
  
  Known issue: on some machines, Visual Studio can't find the `opencv-world401.dll`, in that case, copy the file from the OpenCV install folder to the folder of the built executable
  
- Enjoy!

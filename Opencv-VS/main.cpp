@@ -74,8 +74,8 @@ int main(int argc, char* argv[]) {
     cv::imshow(WINDOW_NAME, removedImage);
     cv::waitKey(0);
 
-    cv::Mat binarizedImage = binarizeImage(removedImage);
-    cv::imshow(WINDOW_NAME, binarizedImage);
+    cv::Mat binarizedImage = binarizeImage(basicImage);
+    cv::imshow(WINDOW_NAME, removedImage);
     cv::waitKey(0);
 
     cv::Mat connectedImage = connectComponentsWithStats(binarizedImage);
