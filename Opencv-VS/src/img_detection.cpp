@@ -109,10 +109,15 @@ cv::Mat connectComponentsWithStats(cv::Mat image)
 	return newImage;
 }
 
-void detectFeaturePointsAKAZE()
+cv::Mat detectFeaturePointsAKAZE(cv::Mat &image)
 {
-	//Implement a method which is able to detect feature points using the AKAZE detector. 
-	//Write out how many feature points were detected by this method.
+	std::vector<cv::KeyPoint> kpts;
+	cv::Ptr<cv::AKAZE> akaze = cv::AKAZE::create();
+	akaze->detect(image, kpts);
+	cv::Mat imgKpts;
+	drawKeypoints(image, kpts, imgKpts, cv::Scalar::all(-1), cv::DrawMatchesFlags::DEFAULT);
+	std::cout << kpts.size() << " keypoints were found on the picture." << std::endl;
+	return imgKpts;
 }
 
 void detectFeaturePointsFFD()

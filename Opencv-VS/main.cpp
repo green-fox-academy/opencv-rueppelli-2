@@ -102,6 +102,10 @@ int main(int argc, char* argv[]) {
     cv::imshow("SharpenImage", sharpenImage);
     cv::waitKey(0);
 
+	cv::Mat akazeFeaturePts = detectFeaturePointsAKAZE(normalizeImage);
+	cv::imshow("FeaturePoints", akazeFeaturePts);
+	cv::waitKey(0);
+
     sqlite3_close(db);
 
     return 0;
