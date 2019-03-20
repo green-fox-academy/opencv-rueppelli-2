@@ -30,7 +30,7 @@ cv::Mat binarizeImage(cv::Mat image)
     int whitePixels = cv::countNonZero(newImage);
     int blackPixels = allPixels - whitePixels;
 
-	return whitePixels < blackPixels ? newImage : newImage;
+	return whitePixels < blackPixels ? newImage : ~newImage;
 }
 
 cv::Mat sharpen(cv::Mat image)
