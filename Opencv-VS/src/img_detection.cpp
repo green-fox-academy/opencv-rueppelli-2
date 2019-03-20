@@ -116,7 +116,9 @@ cv::Mat detectFeaturePointsAKAZE(cv::Mat &image)
 	akaze->detect(image, kpts);
 	cv::Mat imgKpts;
 	drawKeypoints(image, kpts, imgKpts, cv::Scalar::all(-1), cv::DrawMatchesFlags::DEFAULT);
+
 	std::cout << kpts.size() << " keypoints were found on the picture." << std::endl;
+
 	return imgKpts;
 }
 
